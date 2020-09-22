@@ -27,6 +27,7 @@ namespace ERP.Data
                     context.Client.Add(new Client
                     {   
                         // Unit
+                        Id = "C1",
                         Name = "Justin",
                         PhoneNumber = "123456789",
                         Email = "justin@justin.com",
@@ -39,6 +40,7 @@ namespace ERP.Data
                         // Client
                         SendNotifications = true,
                         Address = new Address{
+                            Id = "A1",
                             Street = "Timeline",
                             Number = 999,
                             City = "Nowhere",

@@ -8,8 +8,15 @@ namespace ERP.Contexts
   {
     public DbSet<Address> Address { get; set; }
     public DbSet<Client> Client { get; set; }
+    public DbSet<ItemInfo> ItemInfo { get; set; }
+    public DbSet<Order> Order { get; set; }
+    public DbSet<OrderItem> OrderItem { get; set; }
+    public DbSet<Process> Process { get; set; }
+    public DbSet<ProcessInfo> ProcessInfo { get; set; }
     public DbSet<Supplier> Supplier { get; set; }
     public DbSet<TeamMember> TeamMember { get; set; }
+    public DbSet<TradingInfo> TradingInfo { get; set; }
+    public DbSet<Warehouse> Warehouse { get; set; }
 
     public ErpContext() {}
 
@@ -36,6 +43,7 @@ namespace ERP.Contexts
       modelBuilder.Entity<Address>(entity =>
       {
         entity.HasKey(e => e.Id);
+        //entity.Property(e => e.Id).IsRequired();
         entity.Property(e => e.Street).IsRequired();
         entity.Property(e => e.Number);
         entity.Property(e => e.Floor_Door);
@@ -48,6 +56,7 @@ namespace ERP.Contexts
       {
         // Unit
         entity.HasKey(e => e.Id);
+        //entity.Property(e => e.Id).IsRequired();
         entity.Property(e => e.Name).IsRequired();
         entity.Property(e => e.PhoneNumber).IsRequired();
         entity.Property(e => e.Email).IsRequired();
@@ -62,10 +71,71 @@ namespace ERP.Contexts
         entity.HasOne(e => e.Address);
       });
 
+      modelBuilder.Entity<ItemInfo>(entity =>
+      {
+        // Info
+        entity.HasKey(e => e.Id);
+        //entity.Property(e => e.Id).IsRequired();
+        entity.Property(e => e.Name).IsRequired();
+        entity.Property(e => e.Description).IsRequired();
+        // ItemInfo
+        entity.Property(e => e.LinkImages);
+        entity.Property(e => e.Category).IsRequired();
+        entity.HasMany(e => e.Components);
+        entity.HasMany(e => e.Processes);
+        entity.HasMany(e => e.BuyInfo);
+        entity.HasMany(e => e.SellInfo);
+      });
+
+      modelBuilder.Entity<Order>(entity =>
+      {
+        entity.HasKey(e => e.Id);
+        //entity.Property(e => e.Id).IsRequired();
+        entity.Property(e => e.Reference);          // Key from either client or supplier. Use HasOne() or Property()
+        // entity.HasOne(e => e.Reference);
+        entity.HasOne(e => e.Address);
+        entity.HasMany(e => e.OrderItems);
+        entity.HasMany(e => e.Processes);
+        entity.Property(e => e.Priority);
+      });
+
+      modelBuilder.Entity<OrderItem>(entity =>
+      {
+        entity.HasKey(e => e.Id);
+        //entity.Property(e => e.Id).IsRequired();
+        entity.HasOne(e => e.ItemInfo);
+        entity.HasOne(e => e.Order);
+        entity.HasOne(e => e.TradingInfo);
+        entity.Property(e => e.Units).IsRequired();
+        entity.HasMany(e => e.Processes);
+      });
+
+      modelBuilder.Entity<Process>(entity =>
+      {
+        entity.HasKey(e => e.Id);
+        //entity.Property(e => e.Id).IsRequired();
+        entity.HasOne(e => e.ProcessInfo);
+        entity.Property(e => e.Started);
+        entity.Property(e => e.AssignedTo);
+        // entity.HasOne(e => e.AssignedTo);
+      });
+
+      modelBuilder.Entity<ProcessInfo>(entity =>
+      {
+        // Info
+        entity.HasKey(e => e.Id);
+        //entity.Property(e => e.Id).IsRequired();
+        entity.Property(e => e.Name).IsRequired();
+        entity.Property(e => e.Description).IsRequired();
+        // ProcessInfo
+        entity.Property(e => e.EstimatedDuration).IsRequired();
+      });
+
       modelBuilder.Entity<Supplier>(entity =>
       {
         // Unit
         entity.HasKey(e => e.Id);
+        //entity.Property(e => e.Id).IsRequired();
         entity.Property(e => e.Name).IsRequired();
         entity.Property(e => e.PhoneNumber).IsRequired();
         entity.Property(e => e.Email).IsRequired();
@@ -83,6 +153,7 @@ namespace ERP.Contexts
       {
         // Unit
         entity.HasKey(e => e.Id);
+        //entity.Property(e => e.Id).IsRequired();
         entity.Property(e => e.Name).IsRequired();
         entity.Property(e => e.PhoneNumber).IsRequired();
         entity.Property(e => e.Email).IsRequired();
@@ -100,6 +171,28 @@ namespace ERP.Contexts
         entity.Property(e => e.Salary).IsRequired();
 
       });
+
+      modelBuilder.Entity<TradingInfo>(entity =>
+      {
+        entity.HasKey(e => e.Id);
+        //entity.Property(e => e.Id).IsRequired();
+        entity.Property(e => e.Reference);
+        // entity.HasOne(e => e.Reference);
+        entity.Property(e => e.Price).IsRequired();
+        entity.Property(e => e.Iva).IsRequired();
+        entity.Property(e => e.MinUnits);
+        entity.Property(e => e.PackUnits);
+        entity.Property(e => e.DeliveryTime).IsRequired();
+      });
+
+      modelBuilder.Entity<Warehouse>(entity =>
+      {
+        entity.HasNoKey();
+        entity.HasOne(e => e.ItemInfo);
+        entity.Property(e => e.Units).IsRequired();
+        entity.Property(e => e.State).IsRequired();
+      });
+      
     }
   }
 }

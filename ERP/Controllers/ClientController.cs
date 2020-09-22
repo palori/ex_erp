@@ -32,7 +32,7 @@ namespace ERP.Controllers
 
         // GET: api/Client/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Client>> GetClient(int id)
+        public async Task<ActionResult<Client>> GetClient(string id)
         {
             var client = await _context.Client.FindAsync(id);
 
@@ -48,7 +48,7 @@ namespace ERP.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClient(int id, Client client)
+        public async Task<IActionResult> PutClient(string id, Client client)
         {
             if (id != client.Id)
             {
@@ -91,7 +91,7 @@ namespace ERP.Controllers
         // DELETE: api/Client/5
         //[EnableCors("_myAllowSpecificOrigins")]
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Client>> DeleteClient(int id)
+        public async Task<ActionResult<Client>> DeleteClient(string id)
         {
             var client = await _context.Client.FindAsync(id);
             if (client == null)
@@ -105,7 +105,7 @@ namespace ERP.Controllers
             return client;
         }
 
-        private bool ClientExists(int id)
+        private bool ClientExists(string id)
         {
             return _context.Client.Any(e => e.Id == id);
         }

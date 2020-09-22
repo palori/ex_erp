@@ -4,7 +4,7 @@ namespace ERP.Models
 {
     public class Address
     {
-        public int Id {get; set;}
+        public string Id {get; set;}
         public string Street {get; set;}
         public int Number {get; set;}
         public string Floor_Door {get; set;}
