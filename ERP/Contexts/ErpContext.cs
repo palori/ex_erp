@@ -8,6 +8,7 @@ namespace ERP.Contexts
   {
     public DbSet<Address> Address { get; set; }
     public DbSet<Client> Client { get; set; }
+    public DbSet<Component> Component { get; set; }
     public DbSet<ItemInfo> ItemInfo { get; set; }
     public DbSet<Order> Order { get; set; }
     public DbSet<OrderItem> OrderItem { get; set; }
@@ -71,6 +72,14 @@ namespace ERP.Contexts
         entity.HasOne(e => e.Address);
       });
 
+      modelBuilder.Entity<Component>(entity =>
+      {
+        entity.HasKey(e => e.Id);
+        entity.HasOne(e => e.ItemInfo);
+        entity.HasOne(e => e.Product);
+        entity.Property(e => e.Units).IsRequired();
+      });
+
       modelBuilder.Entity<ItemInfo>(entity =>
       {
         // Info
@@ -81,7 +90,8 @@ namespace ERP.Contexts
         // ItemInfo
         entity.Property(e => e.LinkImages);
         entity.Property(e => e.Category).IsRequired();
-        entity.HasMany(e => e.Components);
+        // entity.HasMany(e => e.Components);
+        // entity.HasMany(e => e.Components);
         entity.HasMany(e => e.Processes);
         entity.HasMany(e => e.BuyInfo);
         entity.HasMany(e => e.SellInfo);

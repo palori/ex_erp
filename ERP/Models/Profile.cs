@@ -2,7 +2,7 @@ using System;
 
 namespace ERP.Models
 {
-    public class Profile
+    public class Profile: IEntityStr
     {
         public string Id {get; set;}
         public string Name {get; set;}

@@ -2,7 +2,7 @@ using System;
 
 namespace ERP.Models
 {
-    public class Address
+    public class Address: IEntityStr
     {
         public string Id {get; set;}
         public string Street {get; set;}

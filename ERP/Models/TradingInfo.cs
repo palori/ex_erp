@@ -2,7 +2,7 @@ using System;
 
 namespace ERP.Models
 {
-    public class TradingInfo
+    public class TradingInfo: IEntityStr
     {
         public string Id {get; set;}
         public string Reference {get; set;}     // Id: pot ser de molts, supplier...

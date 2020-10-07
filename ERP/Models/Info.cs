@@ -2,7 +2,7 @@ using System;
 
 namespace ERP.Models
 {
-    public class Info
+    public class Info: IEntityStr
     {
         public string Id {get; set;}
         public string Name {get; set;}

@@ -2,7 +2,7 @@ using System;
 
 namespace ERP.Models
 {
-    public class Process
+    public class Process: IEntityStr
     {
         public string Id {get; set;}
         public virtual ProcessInfo ProcessInfo {get; set;}
