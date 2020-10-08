@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ERP.Models
 {
-    public class Order: IEntityStr
+    public class Order: IEntity<string>
     {
         public string Id {get; set;}
         // [JsonIgnore]

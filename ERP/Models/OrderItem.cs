@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ERP.Models
 {
-    public class OrderItem: IEntityStr
+    public class OrderItem: IEntity<string>
     {
         public string Id {get; set;}
         public virtual ItemInfo ItemInfo {get; set;}

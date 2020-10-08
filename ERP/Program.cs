@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-using ERP.Data;
+using ERP.Data.DummyData;
 
 namespace ERP
 {
@@ -15,7 +15,7 @@ namespace ERP
     {
         public static void Main(string[] args)
         {
-            DevelopmentData.Test(); // If DB does not exist -> create and adding some test data
+            DummyData.Test(); // If DB does not exist -> create and adding some test data
             CreateHostBuilder(args).Build().Run();
         }
 

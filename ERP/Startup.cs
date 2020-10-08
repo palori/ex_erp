@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 
 using Microsoft.EntityFrameworkCore;
 using ERP.Contexts;
+using ERP.Data.Repositories;
 
 namespace ERP
 {
@@ -35,6 +36,8 @@ namespace ERP
 
             services.AddDbContext<ErpContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<ClientRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

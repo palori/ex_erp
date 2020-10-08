@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ERP.Models
 {
-    public class Component: IEntityInt
+    public class Component: IEntity<int>
     {
         /* public List<string> Id {get; set;}    // ItemInfo Id of the component
         public virtual List<ItemInfo> ItemInfo {get; set;}    // ItemInfo Id of the product composed by this component and others */
