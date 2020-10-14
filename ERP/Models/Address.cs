@@ -11,5 +11,8 @@ namespace ERP.Models
         public string City {get; set;}
         public int PostalCode {get; set;}
         public string Country {get; set;}
+
+        //ForeignKeys
+        public string SupplierId {get; set;}
     }
 }
