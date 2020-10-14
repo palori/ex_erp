@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 using ERP.Models;
-using ERP.Contexts;
 using ERP.Data.Repositories;
 
 namespace ERP.Controllers
@@ -59,20 +58,15 @@ namespace ERP.Controllers
         [HttpPut()]
         public async Task<IActionResult> Update(TIdType id, TEntity entity)
         {
-            //if (id != entity.Id)
-            /* if (!id.Equals(entity.Id))
-            {
-                return BadRequest();
-            } */
+            //var updateResult = await _repository.Update(id, entity);
+            bool updated = await _repository.Update(entity);
 
-            var updateResult = await _repository.Update(id, entity);
-
-            if (!updateResult.Check)
+            if (!updated)
             {
                 return NotFound();
             }
 
-            return Ok(updateResult.Entity);
+            return NoContent();
         }
 
         // POST: api/TEntity

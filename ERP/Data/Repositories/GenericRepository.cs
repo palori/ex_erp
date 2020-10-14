@@ -53,36 +53,31 @@ namespace ERP.Data.Repositories
             return await context.Set<TEntity>().ToListAsync();
         }
 
-        public async UpdateResult<TEntity, TIdType> Update(TIdType id, TEntity entity)
+        public async Task<bool> Update(TEntity entity)
         {
             context.Entry(entity).State = EntityState.Modified;
-
-            UpdateResult<TEntity, TIdType> updateResult = new UpdateResult<TEntity, TIdType>(){
-                Entity = entity,
-                Check = true
-            };
-            
+            bool updated = true;
             try
             {
                 await context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TEntityExists(id).Result) // will it work???
+                if (!TEntityExists(entity.Id).Result) // will it work???
                 {
-                    updateResult.Check = false;
+                    updated = false;
                 }
                 else
                 {
                     throw;
                 }
             }
-            return updateResult;
+            return updated;
         }
 
-        private Task<bool> TEntityExists(TIdType id)
+        private async Task<bool> TEntityExists(TIdType id)
         {
-            return context.Set<TEntity>().AnyAsync<TEntity>(e => e.Id.Equals(id));
+            return await context.Set<TEntity>().AnyAsync<TEntity>(e => e.Id.Equals(id));
         }
 
     }

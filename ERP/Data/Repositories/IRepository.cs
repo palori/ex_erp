@@ -12,14 +12,7 @@ namespace ERP.Data.Repositories
         Task<List<T>> GetAll();
         Task<T> Get(TIdType id);
         Task<T> Add(T entity);
-        UpdateResult<T, TIdType> Update(TIdType id, T entity);
+        Task<bool> Update(T entity);
         Task<T> Delete(TIdType id);
-    }
-
-    public class UpdateResult<T, TIdType>
-        where T : class, IEntity<TIdType> // val la pena tot aixo???
-    {
-        Task<T> Entity {get; set;}
-        bool Check {get; set;}
     }
 }

@@ -37,7 +37,20 @@ namespace ERP
             services.AddDbContext<ErpContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<ClientRepository>();
+            #region repositories
+            services.AddScoped<AddressesRepository>();
+            services.AddScoped<ClientsRepository>();
+            services.AddScoped<ComponentsRepository>();
+            services.AddScoped<ItemInfosRepository>();
+            services.AddScoped<OrderItemsRepository>();
+            services.AddScoped<OrdersRepository>();
+            services.AddScoped<ProcessesRepository>();
+            services.AddScoped<ProcessInfosRepository>();
+            services.AddScoped<SuppliersRepository>();
+            services.AddScoped<TeamMembersRepository>();
+            services.AddScoped<TradingInfosRepository>();
+            services.AddScoped<WarehousesRepository>();
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
