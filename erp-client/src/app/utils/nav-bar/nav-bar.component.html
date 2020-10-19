@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!--div>
+        <button routerLink="/clients" type="button" class="btn btn-outline-primary">Clients</button>
+        <button routerLink="/wharehouse" type="button" class="btn btn-outline-primary">Warehouse</button>
+        <button routerLink="/orders" type="button" class="btn btn-outline-primary">Orders</button>
+        <button routerLink="/team" type="button" class="btn btn-outline-primary">Team</button>
+        <button routerLink="/statistics" type="button" class="btn btn-warning">Statistics</button>
+    </div-->
+    <a routerLink="" class="navbar-brand"><b>vöbu</b>co.</a>
+    <div class="btn-group btn-group-toggle form-inline" data-toggle="buttons">
+        <label routerLink="/clients" class="btn btn-primary active">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> Clients
+        </label>
+        <label routerLink="/wharehouse" class="btn btn-primary">
+            <input type="radio" name="options" id="option2" autocomplete="off"> Warehouse
+        </label>
+        <label routerLink="/orders" class="btn btn-primary">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Orders
+        </label>
+        <label routerLink="/team" class="btn btn-primary">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Team
+        </label>
+        <label routerLink="/statistics" class="btn btn-outline-warning">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Statistics
+        </label>
+    </div>
+</nav>
