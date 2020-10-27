@@ -1,0 +1,45 @@
+<div>
+    <div class="col">
+      <h1 id="tableLabel">Clients</h1>
+      <p>List of clients of the company.</p>
+      <p *ngIf="!clients"><em>Loading...</em></p>
+    </div>
+    <!--div class="col" *ngIf="clients">
+      <app-employee-search></app-employee-search>
+      <a routerLink="/employee/add">
+        <button class="add-new">Add a new client</button>
+      </a>
+    </div-->
+  </div>
+  
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="clients">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>PhoneNumber</th>
+        <th>Salary</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients">
+        <td>{{ client.id }}</td>
+        <td>{{ client.name }}</td>
+        <td>{{ client.surname }}</td>
+        <td>{{ client.job }}</td>
+        <td>{{ client.salary }}</td>
+        <td>
+          <span>
+            <a routerLink="/client/{{client.id}}">
+              <button class="details">Details</button>
+            </a>
+          </span>
+          <span>
+            <button class="delete" (click)="deleteClient(client)">Delete</button>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>

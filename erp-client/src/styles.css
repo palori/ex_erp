@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* VOBU FONT */
+@font-face {
+	font-family: TTFirsNeue;
+	src: url('assets/fonts/TT Firs Neue/TTFirsNeue-Light.otf');
+	font-display: swap;
+
+}
+@font-face {
+	font-family: TTFirsNeue;
+	font-style: italic;
+	src: url('assets/fonts/TT Firs Neue/TTFirsNeue-LightItalic.otf');
+	font-display: swap;
+}
+@font-face {
+	font-family: TTFirsNeue;
+	font-weight: bold;
+	src: url('assets/fonts/TT Firs Neue/TTFirsNeue-Medium.otf');
+	font-display: swap;
+}
+@font-face {
+	font-family: TTFirsNeue;
+	font-style: italic;
+	font-weight: bold;
+	src: url('assets/fonts/TT Firs Neue/TTFirsNeue-MediumItalic.otf');
+	font-display: swap;
+}
+@font-face {
+	font-family: Freight;
+	font-style: italic;
+	font-weight: bold;
+	src: url('assets/fonts/Freight Display Pro/FreightDispProBold-Regular.otf');
+	font-display: swap;
+}
+.vobu-font{
+    font-family: TTFirsNeue;
+}
