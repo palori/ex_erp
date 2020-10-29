@@ -41,15 +41,17 @@ namespace erp_api
             services.AddScoped<AddressesRepository>();
             services.AddScoped<ClientsRepository>();
             services.AddScoped<ComponentsRepository>();
+            services.AddScoped<ContactsRepository>();
             services.AddScoped<ItemInfosRepository>();
             services.AddScoped<OrderItemsRepository>();
             services.AddScoped<OrdersRepository>();
             services.AddScoped<ProcessesRepository>();
             services.AddScoped<ProcessInfosRepository>();
+            services.AddScoped<ProfilesRepository>();
             services.AddScoped<SuppliersRepository>();
             services.AddScoped<TeamMembersRepository>();
             services.AddScoped<TradingInfosRepository>();
-            services.AddScoped<WarehousesRepository>();
+            services.AddScoped<WarehouseItemsRepository>();
             #endregion
         }
 

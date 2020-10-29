@@ -20,8 +20,8 @@ namespace erp_api.Data.DummyData
                 // ItemInfo
                 LinkImages = "images/ii1",
                 Category = "EL-component",
-                Processes = processInfos.GetRange(6,4),
-                BuyInfo = tradingInfos.GetRange(0,1)
+                // Processes = processInfos.GetRange(6,4),
+                // BuyInfo = tradingInfos.GetRange(0,1)
             };
 
             var ii2 = new ItemInfo
@@ -33,8 +33,8 @@ namespace erp_api.Data.DummyData
                 // ItemInfo
                 LinkImages = "images/ii2",
                 Category = "ME-component",
-                Processes = processInfos.GetRange(6,4),
-                BuyInfo = tradingInfos.GetRange(1,2)
+                // Processes = processInfos.GetRange(6,4),
+                // BuyInfo = tradingInfos.GetRange(1,2)
             };
 
             // Protucts
@@ -47,8 +47,8 @@ namespace erp_api.Data.DummyData
                 // ItemInfo
                 LinkImages = "images/ii3",
                 Category = "product",
-                Processes = processInfos.GetRange(0,6),
-                SellInfo = tradingInfos.GetRange(3,2)
+                // Processes = processInfos.GetRange(0,6),
+                // SellInfo = tradingInfos.GetRange(3,2)
             };
 
             var ii4 = new ItemInfo
@@ -60,8 +60,8 @@ namespace erp_api.Data.DummyData
                 // ItemInfo
                 LinkImages = "images/ii4",
                 Category = "product",
-                Processes = processInfos.GetRange(0,6),
-                SellInfo = tradingInfos.GetRange(5,2)
+                // Processes = processInfos.GetRange(0,6),
+                // SellInfo = tradingInfos.GetRange(5,2)
             };
 
             // Add Items

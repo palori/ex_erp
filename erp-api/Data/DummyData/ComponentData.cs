@@ -12,26 +12,26 @@ namespace erp_api.Data.DummyData
             {
                 new Component
                 {
-                    ItemInfo = items[0],
-                    Product = items[2],
+                    Info = items[0],
+                    // Product = items[2],
                     Units = 1
                 },
                 new Component
                 {
-                    ItemInfo = items[1],
-                    Product = items[2],
+                    Info = items[1],
+                    // Product = items[2],
                     Units = 10
                 },
                 new Component
                 {
-                    ItemInfo = items[0],
-                    Product = items[3],
+                    Info = items[0],
+                    // Product = items[3],
                     Units = 2
                 },
                 new Component
                 {
-                    ItemInfo = items[1],
-                    Product = items[3],
+                    Info = items[1],
+                    // Product = items[3],
                     Units = 20
                 }
             };

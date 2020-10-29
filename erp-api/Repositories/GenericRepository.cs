@@ -29,9 +29,9 @@ namespace erp_api.Repositories
             return entity;
         }
 
-        public async Task<TEntity> Delete(TIdType id)
+        public async Task<TEntity> Delete(TEntity _entity)
         {
-            var entity = await context.Set<TEntity>().FindAsync(id);
+            var entity = await context.Set<TEntity>().FindAsync(_entity.Id);
             if (entity == null)
             {
                 return entity;

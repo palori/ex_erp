@@ -56,7 +56,7 @@ namespace erp_api.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut()]
-        public async Task<IActionResult> Update(TIdType id, TEntity entity)
+        public async Task<IActionResult> Update(TEntity entity)
         {
             //var updateResult = await _repository.Update(id, entity);
             bool updated = await _repository.Update(entity);
@@ -84,9 +84,9 @@ namespace erp_api.Controllers
         // DELETE: api/TEntity (not by passing Id in the URL, but in the body)
         //[EnableCors("_myAllowSpecificOrigins")]
         [HttpDelete]
-        public async Task<ActionResult<TEntity>> Delete(TIdType id)
+        public async Task<ActionResult<TEntity>> Delete(TEntity _entity)
         {
-            var entity = await _repository.Delete(id);
+            var entity = await _repository.Delete(_entity);
             if (entity == null)
             {
                 return NotFound();

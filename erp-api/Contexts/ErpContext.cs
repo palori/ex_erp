@@ -9,15 +9,20 @@ namespace erp_api.Contexts
     public DbSet<Address> Address { get; set; }
     public DbSet<Client> Client { get; set; }
     public DbSet<Component> Component { get; set; }
+    public DbSet<Contact> Contact { get; set; }
     public DbSet<ItemInfo> ItemInfo { get; set; }
+    public DbSet<ItemInfoProcessInfo> ItemInfoProcessInfo { get; set; }
+    public DbSet<ItemInfoTradingInfo> ItemInfoTradingInfo { get; set; }
     public DbSet<Order> Order { get; set; }
     public DbSet<OrderItem> OrderItem { get; set; }
+    public DbSet<OrderItemProcessInfo> OrderItemProcessInfo { get; set; }
     public DbSet<Process> Process { get; set; }
     public DbSet<ProcessInfo> ProcessInfo { get; set; }
+    public DbSet<Profile> Profile { get; set; }
     public DbSet<Supplier> Supplier { get; set; }
     public DbSet<TeamMember> TeamMember { get; set; }
     public DbSet<TradingInfo> TradingInfo { get; set; }
-    public DbSet<Warehouse> Warehouse { get; set; }
+    public DbSet<WarehouseItem> WarehouseItem { get; set; }
 
     public ErpContext() {}
 
@@ -40,6 +45,18 @@ namespace erp_api.Contexts
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       base.OnModelCreating(modelBuilder);
+
+      /* modelBuilder.Entity<Address>(entity =>
+      {
+        entity.HasKey(e => e.Id);
+        //entity.Property(e => e.Id).IsRequired();
+        entity.Property(e => e.Street).IsRequired();
+        entity.Property(e => e.Number);
+        entity.Property(e => e.Floor_Door);
+        entity.Property(e => e.City).IsRequired();
+        entity.Property(e => e.PostalCode).IsRequired();
+        entity.Property(e => e.Country).IsRequired();
+      });
 
       modelBuilder.Entity<Address>(entity =>
       {
@@ -201,7 +218,7 @@ namespace erp_api.Contexts
         entity.HasOne(e => e.ItemInfo);
         entity.Property(e => e.Units).IsRequired();
         entity.Property(e => e.State).IsRequired();
-      });
+      }); */
       
     }
   }

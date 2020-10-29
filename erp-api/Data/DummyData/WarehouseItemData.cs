@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using erp_api.Models;
 namespace erp_api.Data.DummyData
 {
-    class WarehouseData
+    class WarehouseItemData
     {
-        public List<Warehouse> Get()
+        public List<WarehouseItem> Get()
         {
-            var list = new List<Warehouse>();
+            var list = new List<WarehouseItem>();
 
             return list;
         }

@@ -7,23 +7,13 @@ namespace erp_api.Data.DummyData
     class TeamMemberData
     {
         DateTime ara = DateTime.Now;
-        public List<TeamMember> Get(List<Address> addresses)
+        public List<TeamMember> Get(List<Profile> profiles, List<Address> addresses)
         {
             var list = new List<TeamMember>();
             list.Add(new TeamMember
             {
-                // Unit
                 Id = "TM1",
-                Name = "Frederik",
-                PhoneNumber = "80 21 12 08",
-                Email = "fred@erik.com",
-                Registered = ara,
-                LastUpdated = ara,
-                // Person
-                Surnames = "Skov",
-                Gender = true,
-                Year = 1990,
-                // TeamMember
+                Profile = profiles[2],
                 Role = "Engineer",
                 IsAdmin = false,
                 Address = addresses[5],
@@ -33,21 +23,11 @@ namespace erp_api.Data.DummyData
 
             list.Add(new TeamMember
             {
-                // Unit
                 Id = "TM2",
-                Name = "Christina",
-                PhoneNumber = "40 21 12 04",
-                Email = "cj@johannsen.com",
-                Registered = ara,
-                LastUpdated = ara,
-                // Person
-                Surnames = "Johannsen",
-                Gender = false,
-                Year = 1995,
-                // TeamMember
+                Profile = profiles[3],
                 Role = "Marketing",
                 IsAdmin = true,
-                Address = addresses[5],
+                Address = addresses[6],
                 Nif = "44445555A",
                 Salary = 2000.0F
             });

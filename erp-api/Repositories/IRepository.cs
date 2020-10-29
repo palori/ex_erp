@@ -13,6 +13,6 @@ namespace erp_api.Repositories
         Task<T> Get(TIdType id);
         Task<T> Add(T entity);
         Task<bool> Update(T entity);
-        Task<T> Delete(TIdType id);
+        Task<T> Delete(T entity);
     }
 }

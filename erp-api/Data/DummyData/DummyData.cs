@@ -44,6 +44,12 @@ namespace erp_api.Data.DummyData
         public static void AddData(ErpContext context)
         {
             // Independent Entities (do not depend on other entities)
+                if (!context.Contact.Any())
+                {
+                    context.Contact.AddRange(new ContactData().Get());
+                    context.SaveChanges();
+                }
+                
                 if (!context.Address.Any())
                 {
                     context.Address.AddRange(new AddressData().Get());
@@ -56,35 +62,47 @@ namespace erp_api.Data.DummyData
                     context.SaveChanges();
                 }
 
+
+                // Dependent Entities (depend on other entities)
                 if (!context.TradingInfo.Any())
                 {
-                    context.TradingInfo.AddRange(new TradingInfoData().Get());
+                    var contacts = context.Contact.ToList();
+                    context.TradingInfo.AddRange(new TradingInfoData().Get(contacts));
                     context.SaveChanges();
                 }
 
-                // Dependent Entities (depend on other entities)
+                if (!context.Profile.Any())
+                {
+                    var contacts = context.Contact.ToList();
+                    context.Profile.AddRange(new ProfileData().Get(contacts));
+                    context.SaveChanges();
+                }
+                
                 if (!context.Client.Any())
                 {
+                    var profiles = context.Profile.ToList();
                     var addresses = context.Address.ToList();
-                    context.Client.AddRange(new ClientData().Get(addresses));
+                    context.Client.AddRange(new ClientData().Get(profiles, addresses));
                     context.SaveChanges();
                 }
 
                 if (!context.Supplier.Any())
                 {
+                    var contacts = context.Contact.ToList();
                     var addresses = context.Address.ToList();
-                    context.Supplier.AddRange(new SupplierData().Get(addresses));
+                    context.Supplier.AddRange(new SupplierData().Get(contacts, addresses));
                     context.SaveChanges();
                 }
 
                 if (!context.TeamMember.Any())
                 {
+                    var profiles = context.Profile.ToList();
                     var addresses = context.Address.ToList();
-                    context.TeamMember.AddRange(new TeamMemberData().Get(addresses));
+                    context.TeamMember.AddRange(new TeamMemberData().Get(profiles, addresses));
                     context.SaveChanges();
                 }
 
-                if (!context.ItemInfo.Any())
+                /* if (!context.ItemInfo.Any())
                 {
                     var tradingInfos = context.TradingInfo.ToList();
                     var processInfos = context.ProcessInfo.ToList();
@@ -92,12 +110,29 @@ namespace erp_api.Data.DummyData
                     context.SaveChanges();
                 }
 
-                if (!context.Component.Any())
+                if (!context.OrderItemProcessInfo.Any())
                 {
-                    var items = context.ItemInfo.ToList();
-                    context.Component.AddRange(new ComponentData().Get(items));
+                    var items = context.OrderItem.ToList();
+                    var processes = context.ProcessInfo.ToList();
+                    context.OrderItemProcessInfo.AddRange(new OrderItemProcessInfoData().Get(items, processes));
                     context.SaveChanges();
                 }
+
+                if (!context.ItemInfoProcessInfo.Any())
+                {
+                    var items = context.ItemInfo.ToList();
+                    var processes = context.ProcessInfo.ToList();
+                    context.ItemInfoProcessInfo.AddRange(new ItemInfoProcessInfoData().Get(items, processes));
+                    context.SaveChanges();
+                }
+                
+                if (!context.ItemInfoTradingInfo.Any())
+                {
+                    var items = context.ItemInfo.ToList();
+                    var tradings = context.TradingInfo.ToList();
+                    context.ItemInfoTradingInfo.AddRange(new ItemInfoTradingInfoData().Get(items, tradings));
+                    context.SaveChanges();
+                } */
 
                 // Still to create data
                 if (!context.Order.Any())
@@ -106,9 +141,9 @@ namespace erp_api.Data.DummyData
                     context.SaveChanges();
                 }
 
-                if (!context.Warehouse.Any())
+                if (!context.WarehouseItem.Any())
                 {
-                    context.Warehouse.AddRange(new WarehouseData().Get());
+                    context.WarehouseItem.AddRange(new WarehouseItemData().Get());
                     context.SaveChanges();
                 }
         }

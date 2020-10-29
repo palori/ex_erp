@@ -9,8 +9,10 @@ namespace erp_api.Models
         // public List<string> Tags {get; set;}
         public string Category {get; set;}
         // public List<ItemInfo> Components {get; set;}
-        public List<ProcessInfo> Processes {get; set;}
-        public List<TradingInfo> BuyInfo {get; set;}
-        public List<TradingInfo> SellInfo {get; set;}
+
+        // public List<ProcessInfo> Processes {get; set;}   // taula intermitja 'InfoItemProcessItem'
+        
+        // public List<TradingInfo> BuyInfo {get; set;}
+        // public List<TradingInfo> SellInfo {get; set;}
     }
 }

@@ -3,9 +3,9 @@ using erp_api.Contexts;
 
 namespace erp_api.Repositories
 {
-    public class WarehousesRepository: GenericRepository<Warehouse, ErpContext, int>
+    public class WarehouseItemsRepository: GenericRepository<WarehouseItem, ErpContext, int>
     {
-        public WarehousesRepository(ErpContext context): base(context)
+        public WarehouseItemsRepository(ErpContext context): base(context)
         {
 
         }

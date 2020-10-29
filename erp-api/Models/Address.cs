@@ -13,6 +13,6 @@ namespace erp_api.Models
         public string Country {get; set;}
 
         //ForeignKeys
-        public string SupplierId {get; set;}
+        // public string SupplierId {get; set;} // Simplified to just one address per supplier :)
     }
 }

@@ -7,35 +7,25 @@ namespace erp_api.Data.DummyData
     class SupplierData
     {
         DateTime ara = DateTime.Now;
-        public List<Supplier> Get(List<Address> addresses)
+        public List<Supplier> Get(List<Contact> contacts, List<Address> addresses)
         {
             var list = new List<Supplier>();
             list.Add(new Supplier
             {
-                // Unit
                 Id = "S1",
-                Name = "Electronics DK",
-                PhoneNumber = "123 456 789",
-                Email = "dk@electronics.com",
-                Registered = ara,
-                LastUpdated = ara,
-                // Person
+                Contact = contacts[2],
                 Cif = "B-12321232",
-                Addresses = addresses.GetRange(2,2)
+                Address = addresses[2]
+                // Addresses = addresses.GetRange(2,2)
             });
 
             list.Add(new Supplier
             {
-                // Unit
                 Id = "S2",
-                Name = "Molds BE",
-                PhoneNumber = "80 21 12 08",
-                Email = "be@molds.com",
-                Registered = ara,
-                LastUpdated = ara,
-                // Person
+                Contact = contacts[3],
                 Cif = "B-12345678",
-                Addresses = addresses.GetRange(4,1)
+                Address = addresses[4]
+                // Addresses = addresses.GetRange(4,1)
             });
 
             return list;

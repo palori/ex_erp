@@ -11,7 +11,7 @@ namespace erp_api.Data.DummyData
             var list = new List<Address>();
             list.Add(new Address
             {
-                Id = "A1",
+                Id = "A-C1",
                 Street = "Timeline",
                 Number = 999,
                 City = "Nowhere",
@@ -20,7 +20,7 @@ namespace erp_api.Data.DummyData
             });
 
             list.Add(new Address{
-                Id = "A2",
+                Id = "A-C2",
                 Street = "5th Ave",
                 Number = 5,
                 City = "NY",

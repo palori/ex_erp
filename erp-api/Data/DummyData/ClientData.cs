@@ -7,23 +7,14 @@ namespace erp_api.Data.DummyData
     class ClientData
     {
         DateTime ara = DateTime.Now;
-        public List<Client> Get(List<Address> addresses)
+        public List<Client> Get(List<Profile> profiles, List<Address> addresses)
         {
             var list = new List<Client>();
             list.Add(new Client
             {   
                 // Unit
                 Id = "C1",
-                Name = "Justin",
-                PhoneNumber = "123456789",
-                Email = "justin@justin.com",
-                Registered = ara,
-                LastUpdated = ara,
-                // Person
-                Surnames = "Time Yesterday",
-                Gender = true,
-                Year = 1800,
-                // Client
+                Profile = profiles[0],
                 SendNotifications = true,
                 Address = addresses[0]
             });
@@ -32,16 +23,7 @@ namespace erp_api.Data.DummyData
             {   
                 // Unit
                 Id = "C2",
-                Name = "Martin",
-                PhoneNumber = "123456780",
-                Email = "martin@martin.com",
-                Registered = ara,
-                LastUpdated = ara,
-                // Person
-                Surnames = "Tin Tin",
-                Gender = true,
-                Year = 1700,
-                // Client
+                Profile = profiles[1],
                 SendNotifications = false,
                 Address = addresses[1]
             });
