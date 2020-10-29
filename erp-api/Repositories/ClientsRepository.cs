@@ -16,7 +16,7 @@ namespace erp_api.Repositories
         {
         }
 
-        public async Task<ClientDto> GetFull(Client _client)
+        public async Task<ClientDto> GetFull(Client _client) // git commit -m "split client, supp, teamm in contact, profile; intermediate entities; clientDto, ctrll i repo"
         {
             List<Client> clients = await GetContext().Set<Client>().ToListAsync();
             List<Profile> profiles = await GetContext().Set<Profile>().ToListAsync();
