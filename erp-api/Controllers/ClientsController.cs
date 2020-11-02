@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using erp_api.Models;
 using erp_api.Repositories;
 using erp_api.Data.DTO;
+using erp_api.Services;
 
 namespace erp_api.Controllers
 {
@@ -12,14 +13,34 @@ namespace erp_api.Controllers
     [ApiController]
     public class ClientsController : GenericController<Client, ClientsRepository, string>
     {
-        public ClientsController(ClientsRepository repository): base(repository)
+        // public ClientsController(ClientsRepository repository): base(repository)
+        // {   
+        // }
+        public ClientsController(ClientsRepository repository, ClientProfileContactService clientProfileContactService): base(repository)
         {   
+            _clientProfileContactService = clientProfileContactService;
         }
 
-        [HttpGet("full")]
-        public async Task<ActionResult<ClientDto>> GetFull(Client client)
+
+        // Service
+        private readonly ClientProfileContactService _clientProfileContactService;
+
+        [HttpGet("full/1")]
+        public async Task<ActionResult<ClientDto>> Get1(ClientDto client)
         {
-            return await GetRepository().GetFull(client);
+            var clientDto =  await _clientProfileContactService.Get(client);
+            if (clientDto == null || clientDto.Id == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(clientDto);
+        }
+        
+        [HttpGet("full")]
+        public async Task<ActionResult<IEnumerable<ClientDto>>> GetN()
+        {
+            return await _clientProfileContactService.GetAll();
         }
     }
 }

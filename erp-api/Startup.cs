@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using erp_api.Contexts;
 using erp_api.Repositories;
+using erp_api.Services;
 using erp_api.Data.DummyData;
 
 namespace erp_api
@@ -52,6 +53,24 @@ namespace erp_api
             services.AddScoped<TeamMembersRepository>();
             services.AddScoped<TradingInfosRepository>();
             services.AddScoped<WarehouseItemsRepository>();
+            #endregion
+
+            #region services
+            services.AddScoped<ClientProfileContactService>();
+
+            // // code to add all services inheriting from the same interface
+            // services.AddScoped(typeof(IRepository<,>));
+            // System.Reflection.Assembly.GetExecutingAssembly()
+            //     .GetTypes()
+            //     .Where(item => item.GetInterfaces()
+            //     .Where(i => i.IsGenericType).Any(i => i.GetGenericTypeDefinition() == typeof(IRepository<,>)) && !item.IsAbstract && !item.IsInterface)
+            //     .ToList()
+            //     .ForEach(assignedTypes =>
+            //     {
+            //         var serviceType = assignedTypes.GetInterfaces().First(i => i.GetGenericTypeDefinition() == typeof(IRepository<,>));
+            //         services.AddScoped(serviceType, assignedTypes);
+            //     });
+            // services.AddScoped(typeof(IService<,>));
             #endregion
         }
 

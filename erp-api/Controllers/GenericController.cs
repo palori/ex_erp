@@ -39,10 +39,10 @@ namespace erp_api.Controllers
         }
 
         // GET: api/TEntity/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TEntity>> Get(TIdType id)
+        [HttpGet("1")] //[HttpGet("{id}")]
+        public async Task<ActionResult<TEntity>> Get(TEntity _entity)
         {
-            var entity = await _repository.Get(id);
+            var entity = await _repository.Get(_entity.Id);
 
             if (entity == null)
             {
