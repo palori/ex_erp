@@ -6,6 +6,12 @@ namespace erp_api.Data.DummyData
 {
     class ProcessInfoData
     {
+        /*
+         
+        ATTENTION!!!
+
+        `ProcessInfo`, `Process`, `ItemInfoProcessInfo`, `OrderItemProcessInfo` and all the parameters of the other models that are related to theese models are temporarily inactive!
+         */
         public List<ProcessInfo> Get()
         {
             var list = new List<ProcessInfo>();

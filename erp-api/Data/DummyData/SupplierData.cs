@@ -13,7 +13,7 @@ namespace erp_api.Data.DummyData
             list.Add(new Supplier
             {
                 Id = "S1",
-                Contact = contacts[2],
+                Contact = contacts[4],
                 Cif = "B-12321232",
                 Address = addresses[2]
                 // Addresses = addresses.GetRange(2,2)
@@ -22,7 +22,7 @@ namespace erp_api.Data.DummyData
             list.Add(new Supplier
             {
                 Id = "S2",
-                Contact = contacts[3],
+                Contact = contacts[5],
                 Cif = "B-12345678",
                 Address = addresses[4]
                 // Addresses = addresses.GetRange(4,1)

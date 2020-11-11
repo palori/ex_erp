@@ -32,14 +32,18 @@ namespace erp_api.Controllers
         }
 
         // GET: api/TEntity
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TEntity>>> GetAll()
+        // public async Task<ActionResult<IEnumerable<TEntity>>> GetAll([FromHeader(Name = "id")] string id)
         {
+            // Console.WriteLine($"GET>>\tid =\t{id}");
+            // Console.WriteLine($"\ttk =\t{tk}");
             return await _repository.GetAll();
         }
 
-        // GET: api/TEntity/5
-        [HttpGet("1")] //[HttpGet("{id}")]
+        // GET: api/TEntity/1
+        [HttpPost("1")] //[HttpGet("1")] //[HttpGet("{id}")] // Should be GET but POST is used to pass ID encryped inside the body
         public async Task<ActionResult<TEntity>> Get(TEntity _entity)
         {
             var entity = await _repository.Get(_entity.Id);
@@ -52,7 +56,7 @@ namespace erp_api.Controllers
             return Ok(entity);
         }
 
-        // PUT: api/TEntity/5
+        // PUT: api/TEntity
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut()]
@@ -83,7 +87,7 @@ namespace erp_api.Controllers
 
         // DELETE: api/TEntity (not by passing Id in the URL, but in the body)
         //[EnableCors("_myAllowSpecificOrigins")]
-        [HttpDelete]
+        [HttpPost("d")] //[HttpDelete] // Should be DELETE but POST is used to pass ID encryped inside the body
         public async Task<ActionResult<TEntity>> Delete(TEntity _entity)
         {
             var entity = await _repository.Delete(_entity);

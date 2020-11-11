@@ -6,7 +6,8 @@ namespace erp_api.Data.DummyData
 {
     class ItemInfoData
     {
-        public List<ItemInfo> Get(List<TradingInfo> tradingInfos, List<ProcessInfo> processInfos)
+        public List<ItemInfo> Get()
+        // public List<ItemInfo> Get(List<TradingInfo> tradingInfos, List<ProcessInfo> processInfos)
         {
             var list = new List<ItemInfo>();
             

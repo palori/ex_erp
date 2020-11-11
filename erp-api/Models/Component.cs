@@ -1,19 +1,25 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace erp_api.Models
 {
     public class Component: IEntity<int>
     {
-        /* public List<string> Id {get; set;}    // ItemInfo Id of the component
-        public virtual List<ItemInfo> ItemInfo {get; set;}    // ItemInfo Id of the product composed by this component and others */
-        public int Id {get; set;}    // ItemInfo Id of the component
+        public int Id {get; set;}
         public int Units {get; set;}
-        // public List<int> Units {get; set;}
 
         // Foreign Keys
-        public virtual ItemInfo Info {get; set;}    // ItemInfo Id of the product composed by this component and others
-        // public virtual ItemInfo Product {get; set;}    // ItemInfo Id of the product composed by this component and others
+        [ForeignKey("_Component")]
+        public string ComponentId {get; set;}
+        [JsonIgnore]
+        public virtual ItemInfo _Component {get; set;}    // ItemInfo Id of the component that composes the product
+
+        [ForeignKey("Product")]
+        public string ProductId {get; set;}
+        [JsonIgnore]
+        public virtual ItemInfo Product {get; set;}    // ItemInfo Id of the product composed by the component (together with other components)
         
         // public TradingInfo Trading {get; set;}
     }

@@ -14,6 +14,7 @@ In the comand line:
 cd erp-api
 dotnet add package Microsoft.EntityFrameworkCore
 dotnet add package MySql.Data.EntityFrameworkCore
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
 
 // If adding authentication
 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
@@ -28,3 +29,7 @@ dotnet restore
 - [Github template](https://github.com/othneildrew/Best-README-Template#contributing)
 - [Basic writing and formatting syntax
 ](https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax)
+
+
+## Models information!
+`ProcessInfo`, `Process`, `ItemInfoProcessInfo`, `OrderItemProcessInfo` and all the parameters of the other models that are related to theese models are temporarily inactive!

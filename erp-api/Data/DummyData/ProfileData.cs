@@ -33,7 +33,7 @@ namespace erp_api.Data.DummyData
             list.Add(new Profile
             {
                 Id = "TM1",
-                Contact = contacts[4],
+                Contact = contacts[6],
                 Surnames = "Skov",
                 Gender = true,
                 Year = 1990
@@ -42,7 +42,7 @@ namespace erp_api.Data.DummyData
             list.Add(new Profile
             {
                 Id = "TM2",
-                Contact = contacts[5],
+                Contact = contacts[7],
                 Surnames = "Johannsen",
                 Gender = false,
                 Year = 1995

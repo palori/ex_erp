@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace erp_api.Models
 {
@@ -7,7 +9,14 @@ namespace erp_api.Models
         public int Id {get; set;}
 
         // Foreign Keys
-        public virtual ItemInfo Item {get; set;}
+        [ForeignKey("Item")]
+        public string ItemInfoId {get; set;}
+        [JsonIgnore]
+        public virtual ItemInfo ItemInfo {get; set;}
+
+        [ForeignKey("Trading")]
+        public string TradingId {get; set;}
+        [JsonIgnore]
         public virtual TradingInfo Trading {get; set;}
     }
 }

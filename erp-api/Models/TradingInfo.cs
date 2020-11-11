@@ -1,4 +1,6 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace erp_api.Models
 {
@@ -14,6 +16,9 @@ namespace erp_api.Models
         public bool Trade {get; set;} // where: 0 = buy, 1 = sell
 
         // Foreign Keys
+        [ForeignKey("Reference")]
+        public string ReferenceId {get; set;}
+        [JsonIgnore]
         public virtual Contact Reference {get; set;}     // Id: pot ser de molts, supplier...
         // public string Reference {get; set;}     // Id: pot ser de molts, supplier...
         // public virtual string Reference {get; set;}     // Id: pot ser de molts, supplier...

@@ -12,27 +12,27 @@ namespace erp_api.Data.DummyData
             {
                 new Component
                 {
-                    Info = items[0],
-                    // Product = items[2],
-                    Units = 1
+                    Units = 1,
+                    _Component = items[0],
+                    Product = items[2],
                 },
                 new Component
                 {
-                    Info = items[1],
-                    // Product = items[2],
-                    Units = 10
+                    Units = 10,
+                    _Component = items[1],
+                    Product = items[2],
                 },
                 new Component
                 {
-                    Info = items[0],
-                    // Product = items[3],
-                    Units = 2
+                    Units = 2,
+                    _Component = items[0],
+                    Product = items[3],
                 },
                 new Component
                 {
-                    Info = items[1],
-                    // Product = items[3],
-                    Units = 20
+                    Units = 20,
+                    _Component = items[1],
+                    Product = items[3],
                 }
             };
 

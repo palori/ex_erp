@@ -4,7 +4,7 @@ using erp_api.Models;
 
 namespace erp_api.Data.DTO
 {
-    public class ClientDto
+    public class SupplierDto
     {
         // Contact
         public string Name {get; set;}
@@ -13,32 +13,23 @@ namespace erp_api.Data.DTO
         public DateTime Registered {get; set;}
         public DateTime LastUpdated {get; set;}
 
-        // Profile
-        public string Surnames {get; set;}
-        public bool Gender {get; set;}
-        public int Year {get; set;}
-
-        // Client
+        // TeamMember
         public string Id {get; set;}
-        public bool SendNotifications {get; set;}
+        public string Cif {get; set;}
         public string AddressId {get; set;}
 
-        public ClientDto(){}
-        public ClientDto(Contact contact, Profile profile, Client client)
+        public SupplierDto(){}
+        public SupplierDto(Contact contact, Supplier supplier)
         {
-            this.Surnames = profile.Surnames;
-            this.Gender = profile.Gender;
-            this.Year = profile.Year;
-
             this.Name = contact.Name;
             this.PhoneNumber = contact.PhoneNumber;
             this.Email = contact.Email;
             this.Registered = contact.Registered;
             this.LastUpdated = contact.LastUpdated;
 
-            this.Id = client.Id;
-            this.SendNotifications = client.SendNotifications;
-            this.AddressId = client.AddressId;
+            this.Id = supplier.Id;
+            this.Cif = supplier.Cif;
+            this.AddressId = supplier.AddressId;
         }
     }
 }

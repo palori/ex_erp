@@ -12,7 +12,7 @@ namespace erp_api.Data.DummyData
             list.Add(new TradingInfo
             {
                 Id = "II1-TI1",
-                Reference = contacts[2],  // Supplier.Id
+                Reference = contacts[4],  // Supplier.Id
                 Price = 5.5F,
                 Iva = 4.0F,
                 MinUnits = 1,
@@ -24,7 +24,7 @@ namespace erp_api.Data.DummyData
             list.Add(new TradingInfo
             {
                 Id = "II2-TI1",
-                Reference = contacts[2],  // Supplier.Id
+                Reference = contacts[4],  // Supplier.Id
                 Price = 2.0F,
                 Iva = 4.0F,
                 MinUnits = 50,
@@ -36,7 +36,7 @@ namespace erp_api.Data.DummyData
             list.Add(new TradingInfo
             {
                 Id = "II2-TI2",
-                Reference = contacts[3],  // Supplier.Id
+                Reference = contacts[5],  // Supplier.Id
                 Price = 1.8F,
                 Iva = 4.0F,
                 MinUnits = 50,
@@ -48,7 +48,7 @@ namespace erp_api.Data.DummyData
             list.Add(new TradingInfo
             {
                 Id = "II3-TI1",
-                Reference = contacts[6],  // Supplier.Id
+                Reference = contacts[3],  // Supplier.Id
                 Price = 120.0F,
                 Iva = 21.0F,
                 MinUnits = 1,
@@ -60,7 +60,7 @@ namespace erp_api.Data.DummyData
             list.Add(new TradingInfo
             {
                 Id = "II3-TI2",
-                Reference = contacts[7],  // Supplier.Id
+                Reference = contacts[2],  // Supplier.Id
                 Price = 90.0F,
                 Iva = 21.0F,
                 MinUnits = 1,
@@ -72,7 +72,7 @@ namespace erp_api.Data.DummyData
             list.Add(new TradingInfo
             {
                 Id = "II4-TI1",
-                Reference = contacts[6],  // Supplier.Id
+                Reference = contacts[3],  // Supplier.Id
                 Price = 150.0F,
                 Iva = 21.0F,
                 MinUnits = 1,
@@ -84,7 +84,7 @@ namespace erp_api.Data.DummyData
             list.Add(new TradingInfo
             {
                 Id = "II4-TI2",
-                Reference = contacts[7],  // Supplier.Id
+                Reference = contacts[2],  // Supplier.Id
                 Price = 110.0F,
                 Iva = 21.0F,
                 MinUnits = 1,

@@ -16,6 +16,7 @@ using erp_api.Contexts;
 using erp_api.Repositories;
 using erp_api.Services;
 using erp_api.Data.DummyData;
+using erp_api.Helpers;
 
 namespace erp_api
 {
@@ -56,7 +57,11 @@ namespace erp_api
             #endregion
 
             #region services
+            services.AddScoped<IAuthenticateService, AuthenticateService>();
+            services.AddScoped<StatisticsService>();
             services.AddScoped<ClientProfileContactService>();
+            services.AddScoped<SupplierContactService>();
+            services.AddScoped<TeamMemberProfileContactService>();
 
             // // code to add all services inheriting from the same interface
             // services.AddScoped(typeof(IRepository<,>));
@@ -72,6 +77,9 @@ namespace erp_api
             //     });
             // services.AddScoped(typeof(IService<,>));
             #endregion
+
+            // configure strongly typed settings object
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,11 +97,14 @@ namespace erp_api
             if (env.IsDevelopment())
             {
                 // Or uncomment if in development
-                app.UseCors(builder => builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
+                app.UseCors(builder => builder // global cors policy
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
             }
+
+            // custom jwt auth middleware
+            app.UseMiddleware<JwtMiddleware>();
 
             app.UseAuthorization();
 

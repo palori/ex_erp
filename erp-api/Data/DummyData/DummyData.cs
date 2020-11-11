@@ -56,20 +56,25 @@ namespace erp_api.Data.DummyData
                     context.SaveChanges();
                 }
 
-                if (!context.ProcessInfo.Any())
+                /*
+         
+                ATTENTION!!!
+
+                `ProcessInfo`, `Process`, `ItemInfoProcessInfo`, `OrderItemProcessInfo` and all the parameters of the other models that are related to theese models are temporarily inactive!
+                */
+                // if (!context.ProcessInfo.Any())
+                // {
+                //     context.ProcessInfo.AddRange(new ProcessInfoData().Get());
+                //     context.SaveChanges();
+                // }
+
+                if (!context.ItemInfo.Any())
                 {
-                    context.ProcessInfo.AddRange(new ProcessInfoData().Get());
+                    context.ItemInfo.AddRange(new ItemInfoData().Get());
                     context.SaveChanges();
                 }
-
 
                 // Dependent Entities (depend on other entities)
-                if (!context.TradingInfo.Any())
-                {
-                    var contacts = context.Contact.ToList();
-                    context.TradingInfo.AddRange(new TradingInfoData().Get(contacts));
-                    context.SaveChanges();
-                }
 
                 if (!context.Profile.Any())
                 {
@@ -102,50 +107,70 @@ namespace erp_api.Data.DummyData
                     context.SaveChanges();
                 }
 
-                /* if (!context.ItemInfo.Any())
-                {
-                    var tradingInfos = context.TradingInfo.ToList();
-                    var processInfos = context.ProcessInfo.ToList();
-                    context.ItemInfo.AddRange(new ItemInfoData().Get(tradingInfos, processInfos));
-                    context.SaveChanges();
-                }
+                // ---
 
-                if (!context.OrderItemProcessInfo.Any())
-                {
-                    var items = context.OrderItem.ToList();
-                    var processes = context.ProcessInfo.ToList();
-                    context.OrderItemProcessInfo.AddRange(new OrderItemProcessInfoData().Get(items, processes));
-                    context.SaveChanges();
-                }
-
-                if (!context.ItemInfoProcessInfo.Any())
+                if (!context.Component.Any())
                 {
                     var items = context.ItemInfo.ToList();
-                    var processes = context.ProcessInfo.ToList();
-                    context.ItemInfoProcessInfo.AddRange(new ItemInfoProcessInfoData().Get(items, processes));
+                    context.Component.AddRange(new ComponentData().Get(items));
                     context.SaveChanges();
                 }
-                
+
+                if (!context.TradingInfo.Any())
+                {
+                    var contacts = context.Contact.ToList();
+                    context.TradingInfo.AddRange(new TradingInfoData().Get(contacts));
+                    context.SaveChanges();
+                }
+
+                if (!context.WarehouseItem.Any())
+                {
+                    var items = context.ItemInfo.ToList();
+                    context.WarehouseItem.AddRange(new WarehouseItemData().Get(items));
+                    context.SaveChanges();
+                }
+
+                if (!context.Order.Any())
+                {
+                    var contacts = context.Contact.ToList();
+                    var addresses = context.Address.ToList();
+                    context.Order.AddRange(new OrderData().Get(contacts, addresses));
+                    context.SaveChanges();
+                }
+
+                if (!context.OrderItem.Any())
+                {
+                    var items = context.ItemInfo.ToList();
+                    var orders = context.Order.ToList();
+                    var tradingInfos = context.TradingInfo.ToList();
+                    context.OrderItem.AddRange(new OrderItemData().Get(items, orders, tradingInfos));
+                    context.SaveChanges();
+                }
+
                 if (!context.ItemInfoTradingInfo.Any())
                 {
                     var items = context.ItemInfo.ToList();
                     var tradings = context.TradingInfo.ToList();
                     context.ItemInfoTradingInfo.AddRange(new ItemInfoTradingInfoData().Get(items, tradings));
                     context.SaveChanges();
-                } */
-
-                // Still to create data
-                if (!context.Order.Any())
-                {
-                    context.Order.AddRange(new OrderData().Get());
-                    context.SaveChanges();
                 }
 
-                if (!context.WarehouseItem.Any())
-                {
-                    context.WarehouseItem.AddRange(new WarehouseItemData().Get());
-                    context.SaveChanges();
-                }
+                // if (!context.OrderItemProcessInfo.Any())
+                // {
+                //     var items = context.OrderItem.ToList();
+                //     var processes = context.ProcessInfo.ToList();
+                //     context.OrderItemProcessInfo.AddRange(new OrderItemProcessInfoData().Get(items, processes));
+                //     context.SaveChanges();
+                // }
+
+                // if (!context.ItemInfoProcessInfo.Any())
+                // {
+                //     var items = context.ItemInfo.ToList();
+                //     var processes = context.ProcessInfo.ToList();
+                //     context.ItemInfoProcessInfo.AddRange(new ItemInfoProcessInfoData().Get(items, processes));
+                //     context.SaveChanges();
+                // }
+                
         }
 
     }
