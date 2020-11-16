@@ -94,14 +94,14 @@ namespace erp_api
 
             app.UseRouting();
 
-            if (env.IsDevelopment())
-            {
+            // if (env.IsDevelopment())
+            // {
                 // Or uncomment if in development
                 app.UseCors(builder => builder // global cors policy
-                    .AllowAnyOrigin()
+                    .AllowAnyOrigin() // origen web (web i server en puertos distintos)
                     .AllowAnyMethod()
                     .AllowAnyHeader());
-            }
+            // }
 
             // custom jwt auth middleware
             app.UseMiddleware<JwtMiddleware>();

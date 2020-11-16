@@ -15,10 +15,10 @@ namespace erp_api.Data.DummyData
                 Id = "C1",
                 Name = "Justin",
                 PhoneNumber = "123456789",
-                Email = "justin@justin.com",
+                Email = "asdf",
                 Registered = ara,
                 LastUpdated = ara,
-                Password = "asdfadsfasdf"
+                Password = "1234"
             });
 
             list.Add(new Contact

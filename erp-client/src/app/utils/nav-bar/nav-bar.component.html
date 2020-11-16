@@ -14,7 +14,7 @@
 <!-- Attempt with radio buttons-->
 <nav class="navbar navbar-dark bg-dark">
     <a routerLink="" class="navbar-brand"><b>vöbu</b>co.</a>
-    <div class="btn-group btn-group-toggle form-inline float-right" data-toggle="buttons">
+    <div class="btn-group btn-group-toggle form-inline float-right" data-toggle="buttons" *ngIf="currentUser">
         <label routerLink="/clients" class="btn btn-outline-secondary active">
             <input type="radio" name="options" id="option1" autocomplete="off" checked> Clients
         </label>
@@ -30,8 +30,8 @@
         <label routerLink="/statistics" class="btn btn-outline-warning">
             <input type="radio" name="options" id="option3" autocomplete="off"> Statistics
         </label>
-        <label routerLink="/statistics" class="btn btn-outline-primary">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Profile
+        <label class="btn btn-outline-primary">
+            <input type="radio" name="options" id="option3" autocomplete="off" (click)="logout()"> Log out
         </label>
     </div>
     

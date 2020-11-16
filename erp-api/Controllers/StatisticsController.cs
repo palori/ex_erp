@@ -19,12 +19,14 @@ namespace erp_api.Controllers
 
         private readonly StatisticsService _statisticsService; // Service
 
+        [Authorize]
         [HttpGet("clientsmonth")]
         public async Task<ActionResult<StatisticsDto<DateTime,int>>> NewClientsMonth()
         {
             return await _statisticsService.NewClientsMonth();
         }
 
+        [Authorize]
         [HttpGet("ordersday_avgcart")]
         public async Task<ActionResult<List<StatisticsDto<string,float>>>> OrdersDay_AvgCart()
         {

@@ -43,6 +43,7 @@ namespace erp_api.Controllers
         }
 
         // GET: api/TEntity/1
+        [Authorize]
         [HttpPost("1")] //[HttpGet("1")] //[HttpGet("{id}")] // Should be GET but POST is used to pass ID encryped inside the body
         public async Task<ActionResult<TEntity>> Get(TEntity _entity)
         {
@@ -59,6 +60,7 @@ namespace erp_api.Controllers
         // PUT: api/TEntity
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [Authorize]
         [HttpPut()]
         public async Task<IActionResult> Update(TEntity entity)
         {
@@ -76,6 +78,7 @@ namespace erp_api.Controllers
         // POST: api/TEntity
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult<TEntity>> Add(TEntity entity)
         {
@@ -87,6 +90,7 @@ namespace erp_api.Controllers
 
         // DELETE: api/TEntity (not by passing Id in the URL, but in the body)
         //[EnableCors("_myAllowSpecificOrigins")]
+        [Authorize]
         [HttpPost("d")] //[HttpDelete] // Should be DELETE but POST is used to pass ID encryped inside the body
         public async Task<ActionResult<TEntity>> Delete(TEntity _entity)
         {

@@ -18,6 +18,7 @@ namespace erp_api.Controllers
 
         private readonly TeamMemberProfileContactService _teamMemeberProfileContactService; // Service
 
+        [Authorize]
         [HttpPost("1")] //[HttpGet("1")]
         public async Task<ActionResult<TeamMemberDto>> Get(TeamMemberDto teamMember)
         {
@@ -30,6 +31,7 @@ namespace erp_api.Controllers
             return Ok(teamMemberDto);
         }
         
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TeamMemberDto>>> GetAll()
         {

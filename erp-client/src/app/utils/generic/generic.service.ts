@@ -3,29 +3,32 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+// @Injectable({
+//   providedIn: 'root'
+// })
 
-export interface IGenericService{
-  getAll(): Observable<any[]>
-  get(id: number): Observable<any>
-  update(item: any): Observable<any>
-  delete(item: any): Observable<any>
-  add(item: any): Observable<any>
+export interface IGenericService<T>{
+  getAll(): Observable<T[]>
+  get(id: any | T): Observable<T>
+  update(item: T): Observable<T>
+  delete(item: T): Observable<T>
+  add(item: T): Observable<T>
 }
 
-export class GenericService implements IGenericService{
+export class GenericService<T> implements IGenericService<T>{
   
   private url: string; // URL to web api
+  private item: T;
+  private items: T[];
 
   httpOptions = {
       headers: new HttpHeaders(
         {
             'Content-Type': 'application/json',
-            'tk': "token_must_go_here",
-            'id': "any_id"
+            // 'tk': "token_must_go_here",
+            // 'id': "any_id"
         })
   };
 
@@ -34,63 +37,64 @@ export class GenericService implements IGenericService{
       private http: HttpClient
   )
   {
-      this.url = _url;
+    //   this.url = `${environment.apiUrl}/${_url}`;
+      this.url = `${environment.apiUrl}/${_url}`;
   }
 
-  set_token(token: string)
-  {
-        this.httpOptions.headers.set("tk",token);
-  } 
+//   set_token(token: string)
+//   {
+//         this.httpOptions.headers.set("tk",token);
+//   } 
 
   set_id(id: any)
   {
     id = typeof id === 'number' ? id.toString() : id;     // it can only be a number or a string
-    this.httpOptions.headers.set("id", id);
+    // this.httpOptions.headers.set("id", id);
   }
 
-  getAll(): Observable<any[]> 
+  getAll(): Observable<T[]> 
   {
-      this.set_id(-1);
-      return this.http.get<any[]>(this.url).pipe(
+    //   this.set_id(-1);
+      return this.http.get<T[]>(this.url, this.httpOptions).pipe(
           //tap(_ => this.log('fetched heroes')),
-          catchError(this.handleError<any[]>('getAll', []))
+          catchError(this.handleError<T[]>('getAll', []))
       );
   }
 
-  get(item: any): Observable<any>
+  get(item: T): Observable<T>
   {
       const url = `${this.url}/1`; //`${this.url}/${id}`;
-      this.set_id(item.id);
-      return this.http.get<any>(url).pipe(
+    //   this.set_id(item.id);
+      return this.http.post<T>(url, item, this.httpOptions).pipe(
           //tap(_ => this.log(`fetched hero id=${id}`)),
-          catchError(this.handleError<any>(`get id=${item.id}`))
+          catchError(this.handleError<T>(`get ${item}`))//(`get id=${item.Id}`))
       );
   }
 
-  update(item: any): Observable<any>
+  update(item: T): Observable<T>
   {
       const url = `${this.url}/1`; //`${this.url}/${id}`;
-      this.set_id(-1);
-      return this.http.put(url, item, this.httpOptions).pipe(
+    //   this.set_id(-1);
+      return this.http.put<T>(url, item, this.httpOptions).pipe(
           //tap(_ => this.log(`updated hero id=${hero.id}`)),
-          catchError(this.handleError<any>(`update ${typeof item}`))
+          catchError(this.handleError<T>(`update ${typeof item}`))
       );
   }
 
-  delete(item: any): Observable<any>{
+  delete(item: T): Observable<T>{
       //const url = `${this.url}/${id}`;
-      this.set_id(item.id);
-      return this.http.delete<any>(this.url, this.httpOptions).pipe(
+    //   this.set_id(item.id);
+      return this.http.delete<T>(this.url, this.httpOptions).pipe(
           //tap(_ => this.log(`deleted hero id=${id}`)),
-          catchError(this.handleError<any>(`delete ${typeof item}`)) // to imporve and add to others!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          catchError(this.handleError<T>(`delete ${typeof item}`)) // to imporve and add to others!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       );
   }
 
-  add(item: any): Observable<any> {
-      this.set_id(-1);
-      return this.http.post<any>(this.url, item, this.httpOptions).pipe(
+  add(item: T): Observable<T> {
+    //   this.set_id(-1);
+      return this.http.post<T>(this.url, item, this.httpOptions).pipe(
           //tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
-          catchError(this.handleError<any>(`add ${typeof item}`))
+          catchError(this.handleError<T>(`add ${typeof item}`))
       );
     }
 
@@ -100,8 +104,8 @@ export class GenericService implements IGenericService{
  * @param operation - name of the operation that failed
  * @param result - optional value to return as the observable result
  */
-  handleError<T>(operation = 'operation', result?: T) {
-      return (error: any): Observable<T> => {
+  handleError<TT>(operation = 'operation', result?: TT) {
+      return (error: any): Observable<TT> => {
 
           // TODO: send the error to remote logging infrastructure
           console.error(error); // log to console instead
@@ -110,7 +114,7 @@ export class GenericService implements IGenericService{
           //this.log(`${operation} failed: ${error.message}`);
 
           // Let the app keep running by returning an empty result.
-          return of(result as T);
+          return of(result as TT);
       };
   }
 }
