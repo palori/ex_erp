@@ -32,4 +32,25 @@ export class NavBarComponent implements OnInit {
     this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
   }
 
+  home() {
+    // uncheck radiobutton menu!
+
+    //option1
+    // var menu = document.getElementsByClassName("btn-group");
+    // // document.getElementsByClassName("btn-group")[0]
+    // for (var i=0; i < menu.length; i++){
+    //   // menu[i].setAttribute("checked","defaultChoice");
+    //   menu[i][0].removeAttribute("checked");
+    //   console.log(menu[i]);
+    // }
+
+    // option2
+    var menu1 = document.querySelectorAll('[id^=option]');
+    console.log(menu1);
+    for (var i=0; i<menu1.length; i++){
+      console.log(menu1[0].removeAttribute("checked"));
+    }
+      
+  }
+
 }

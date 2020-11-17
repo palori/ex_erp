@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
+using erp_api.Data.DTO;
+
 namespace erp_api.Models
 {
     public class Supplier: IEntity<string>
@@ -21,5 +23,13 @@ namespace erp_api.Models
         [JsonIgnore]
         public virtual Address Address {get; set;} // Simplify to just one address :)
         // public virtual List<Address> Addresses {get; set;}
+
+        public void Update<T>(T entity, Contact contact, Address address) where T: SupplierDto
+        {
+            if (entity.Id != null) this.Id = entity.Id;
+            if (entity.Cif != null) this.Cif = entity.Cif;
+            if (contact != null) this.Contact = contact;
+            if (address != null) this.Address = address;
+        }
     }
 }

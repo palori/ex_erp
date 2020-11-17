@@ -13,10 +13,13 @@
 
 <!-- Attempt with radio buttons-->
 <nav class="navbar navbar-dark bg-dark">
-    <a routerLink="" class="navbar-brand"><b>vöbu</b>co.</a>
+    <a routerLink="" class="navbar-brand" (click)="home()"><b>vöbu</b>co.</a>
     <div class="btn-group btn-group-toggle form-inline float-right" data-toggle="buttons" *ngIf="currentUser">
         <label routerLink="/clients" class="btn btn-outline-secondary active">
-            <input type="radio" name="options" id="option1" autocomplete="off" checked> Clients
+            <input type="radio" name="options" id="option0" autocomplete="off"> Clients
+        </label>
+        <label routerLink="/suppliers" class="btn btn-outline-secondary active">
+            <input type="radio" name="options" id="option1" autocomplete="off"> Suppliers
         </label>
         <label routerLink="/warehouse" class="btn btn-outline-secondary">
             <input type="radio" name="options" id="option2" autocomplete="off"> Warehouse
@@ -25,13 +28,13 @@
             <input type="radio" name="options" id="option3" autocomplete="off"> Orders
         </label>
         <label routerLink="/team" class="btn btn-outline-secondary">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Team
+            <input type="radio" name="options" id="option4" autocomplete="off"> Team
         </label>
         <label routerLink="/statistics" class="btn btn-outline-warning">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Statistics
+            <input type="radio" name="options" id="option5" autocomplete="off"> Statistics
         </label>
         <label class="btn btn-outline-primary">
-            <input type="radio" name="options" id="option3" autocomplete="off" (click)="logout()"> Log out
+            <input type="radio" name="options" id="option6" autocomplete="off" (click)="logout()"> Log out
         </label>
     </div>
     

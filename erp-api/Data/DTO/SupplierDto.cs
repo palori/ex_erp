@@ -4,14 +4,14 @@ using erp_api.Models;
 
 namespace erp_api.Data.DTO
 {
-    public class SupplierDto
+    public class SupplierDto : IContact
     {
         // Contact
         public string Name {get; set;}
         public string PhoneNumber {get; set;}
         public string Email {get; set;}
-        public DateTime Registered {get; set;}
-        public DateTime LastUpdated {get; set;}
+        public DateTime? Registered {get; set;}
+        public DateTime? LastUpdated {get; set;}
 
         // TeamMember
         public string Id {get; set;}

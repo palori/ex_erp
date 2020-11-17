@@ -69,8 +69,8 @@ namespace erp_api.Services
             List<ClientDto> clients = await this.clients.GetAll();
             foreach (var client in clients)
             {
-                var yearC = client.Registered.Year;
-                var monthC = client.Registered.Month;
+                var yearC = ((DateTime)client.Registered).Year;
+                var monthC = ((DateTime)client.Registered).Month;
                 var x = new DateTime(year,month,1);
                 
                 for (int i=0; i<numMonths; i++)

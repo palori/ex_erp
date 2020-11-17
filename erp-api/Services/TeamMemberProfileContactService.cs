@@ -105,5 +105,82 @@ namespace erp_api.Services
             return teamMembersDto;
         }
 
+        public async Task<bool> Update(TeamMemberDto tm0)
+        {
+            TeamMember tm = await this.teamMembers.Get(tm0.Id);
+            tm.Update<TeamMemberDto>(tm0, null, null);
+
+            // Find tm profile
+            Profile profile = await this.profiles.Get(tm.ProfileId);
+            profile.Update<TeamMemberDto>(tm0, null, null);
+
+            // Find profile contact
+            Contact contact = await this.contacts.Get(profile.ContactId);
+            contact.Update<TeamMemberDto>(tm0, null);
+
+            // Update DB
+            bool tm_updated = false, profile_updated = false, contact_updated = false;
+            tm_updated = await this.teamMembers.Update(tm);
+            if (tm_updated)
+            {
+                profile_updated = await this.profiles.Update(profile);
+                if (profile_updated)
+                {
+                    contact_updated = await this.contacts.Update(contact);
+                }
+            }
+            
+            return tm_updated && profile_updated && contact_updated;
+        }
+
+        public async Task<TeamMemberDto> Add(TeamMemberDto tm0)
+        {
+            // Some code to generate the Id's
+            string cliId = "TM3"; // generated somewhere
+            //string addId = "A-"+cliId;
+            string profId = cliId;
+            string contId = cliId;
+            tm0.Id = cliId; // assign tm Id, no matter what they send
+
+            // Contact
+            Contact contact = new Contact();
+            contact.Update<TeamMemberDto>(tm0, contId);
+            Contact cont = await this.contacts.Add(contact);
+
+            // Profile
+            Profile profile = new Profile();
+            profile.Update<TeamMemberDto>(tm0, profId, contact);
+            Profile prof = await this.profiles.Add(profile);
+
+            // Client
+            TeamMember tm = new TeamMember();
+            tm.Update<TeamMemberDto>(tm0, profile, null);
+            TeamMember cli = await this.teamMembers.Add(tm);
+
+            return new TeamMemberDto(cont, prof, cli);
+        }
+
+        public async Task<TeamMemberDto> Delete(TeamMemberDto tm0)
+        {
+            TeamMember tm = await this.teamMembers.Get(tm0.Id);
+            Profile profile = await this.profiles.Get(tm.ProfileId);
+            Contact contact = await this.contacts.Get(profile.ContactId);
+            
+            TeamMember del_tm = await this.teamMembers.Delete(tm);
+            if (del_tm != null)
+            {
+                Profile del_profile = await this.profiles.Delete(profile);
+
+                if (del_profile != null)
+                {
+                    Contact del_contact = await this.contacts.Delete(contact);
+                    // maybe check if contact has been deleted properly
+                }
+            }
+
+            // further considerations: compliance if some of them can be deleted bu not all...
+            return new TeamMemberDto(contact, profile, tm);
+        }
+
     }
 }

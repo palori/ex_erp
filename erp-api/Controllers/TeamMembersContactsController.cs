@@ -37,5 +37,32 @@ namespace erp_api.Controllers
         {
             return await _teamMemeberProfileContactService.GetAll();
         }
+
+        [Authorize]
+        [HttpPut()]
+        public async Task<IActionResult> Update(TeamMemberDto teamMember)
+        {
+            bool updated = await _teamMemeberProfileContactService.Update(teamMember);
+            if (!updated) return NotFound();
+            return NoContent();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult<TeamMemberDto>> Add(TeamMemberDto teamMember)
+        {
+            var entity = await _teamMemeberProfileContactService.Add(teamMember);
+            if (entity == null) return BadRequest();
+            return Ok(entity);
+        }
+
+        [Authorize]
+        [HttpPost("d")] //[HttpDelete]
+        public async Task<ActionResult<TeamMemberDto>> Delete(TeamMemberDto teamMember)
+        {
+            var entity = await _teamMemeberProfileContactService.Delete(teamMember);
+            if (entity == null) return NotFound();
+            return Ok(entity);
+        }
     }
 }

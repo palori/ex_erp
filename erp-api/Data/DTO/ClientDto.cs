@@ -4,24 +4,26 @@ using erp_api.Models;
 
 namespace erp_api.Data.DTO
 {
-    public class ClientDto
+    public class ClientDto : IProfile
     {
+        #nullable enable
         // Contact
-        public string Name {get; set;}
-        public string PhoneNumber {get; set;}
-        public string Email {get; set;}
-        public DateTime Registered {get; set;}
-        public DateTime LastUpdated {get; set;}
+        public string? Name {get; set;}
+        public string? PhoneNumber {get; set;}
+        public string? Email {get; set;}
+        public DateTime? Registered {get; set;}
+        public DateTime? LastUpdated {get; set;}
 
         // Profile
-        public string Surnames {get; set;}
-        public bool Gender {get; set;}
-        public int Year {get; set;}
+        public string? Surnames {get; set;}
+        public bool? Gender {get; set;}
+        public int? Year {get; set;}
 
         // Client
-        public string Id {get; set;}
-        public bool SendNotifications {get; set;}
-        public string AddressId {get; set;}
+        public string? Id {get; set;}
+        public bool? SendNotifications {get; set;}
+        public string? AddressId {get; set;}
+        #nullable disable
 
         public ClientDto(){}
         public ClientDto(Contact contact, Profile profile, Client client)

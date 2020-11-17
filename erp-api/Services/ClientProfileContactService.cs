@@ -127,5 +127,84 @@ namespace erp_api.Services
             
         //     return clientsDto;
         // }
+
+
+        public async Task<bool> Update(ClientDto client0)
+        {
+            Client client = await this.clients.Get(client0.Id);
+            client.Update<ClientDto>(client0, null, null);
+
+            // Find client profile
+            Profile profile = await this.profiles.Get(client.ProfileId);
+            profile.Update<ClientDto>(client0, null, null);
+
+            // Find profile contact
+            Contact contact = await this.contacts.Get(profile.ContactId);
+            contact.Update<ClientDto>(client0, null);
+
+            // Update DB
+            bool client_updated = false, profile_updated = false, contact_updated = false;
+            client_updated = await this.clients.Update(client);
+            if (client_updated)
+            {
+                profile_updated = await this.profiles.Update(profile);
+                if (profile_updated)
+                {
+                    contact_updated = await this.contacts.Update(contact);
+                }
+            }
+            
+            return client_updated && profile_updated && contact_updated;
+        }
+
+        public async Task<ClientDto> Add(ClientDto client0)
+        {
+            // Some code to generate the Id's
+            string cliId = "C3"; // generated somewhere
+            //string addId = "A-"+cliId;
+            string profId = cliId;
+            string contId = cliId;
+            client0.Id = cliId; // assign client Id, no matter what they send
+
+            // Contact
+            Contact contact = new Contact();
+            contact.Update<ClientDto>(client0, contId);
+            Contact cont = await this.contacts.Add(contact);
+
+            // Profile
+            Profile profile = new Profile();
+            profile.Update<ClientDto>(client0, profId, contact);
+            Profile prof = await this.profiles.Add(profile);
+
+            // Client
+            Client client = new Client();
+            client.Update<ClientDto>(client0, profile, null);
+            Client cli = await this.clients.Add(client);
+
+            return new ClientDto(cont, prof, cli);
+        }
+
+        public async Task<ClientDto> Delete(ClientDto client0)
+        {
+            Client client = await this.clients.Get(client0.Id);
+            Profile profile = await this.profiles.Get(client.ProfileId);
+            Contact contact = await this.contacts.Get(profile.ContactId);
+            
+            Client del_client = await this.clients.Delete(client);
+            if (del_client != null)
+            {
+                Profile del_profile = await this.profiles.Delete(profile);
+
+                if (del_profile != null)
+                {
+                    Contact del_contact = await this.contacts.Delete(contact);
+                    // maybe check if contact has been deleted properly
+                }
+            }
+
+            // further considerations: compliance if some of them can be deleted bu not all...
+            return new ClientDto(contact, profile, client);
+        }
+
     }
 }

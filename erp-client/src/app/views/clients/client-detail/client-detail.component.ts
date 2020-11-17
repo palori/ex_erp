@@ -71,7 +71,10 @@ export class ClientDetailComponent implements OnInit {
   }
 
   updateClient(){
-    console.log("Not implemented yet ;)");
+    // console.log("Not implemented yet ;)");
+    this.clientService.update(this.client)
+    //.subscribe(employee => this.employee = employee);
+    .subscribe(() => this.goBack());
   }
   updateAddress(){
     console.log("Not implemented yet ;)");

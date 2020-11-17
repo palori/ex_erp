@@ -13,6 +13,7 @@ import { NavBarComponent } from './utils/nav-bar/nav-bar.component';
 // Views
 import { LoginComponent } from './views/login/login.component';
 import { ClientsComponent } from './views/clients/clients.component';
+import { SuppliersComponent } from './views/suppliers/suppliers.component';
 import { WarehouseComponent } from './views/warehouse/warehouse.component';
 import { OrdersComponent } from './views/orders/orders.component';
 import { TeamComponent } from './views/team/team.component';
@@ -21,12 +22,14 @@ import { ClientsListComponent } from './views/clients/clients-list/clients-list.
 // import { GenericComponent } from './utils/generic/generic.component';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { ClientDetailComponent } from './views/clients/client-detail/client-detail.component';
+import { ProfileComponent } from './views/profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     ClientsComponent,
+    SuppliersComponent,
     WarehouseComponent,
     OrdersComponent,
     TeamComponent,
@@ -34,6 +37,7 @@ import { ClientDetailComponent } from './views/clients/client-detail/client-deta
     ClientsListComponent,
     LoginComponent,
     ClientDetailComponent,
+    ProfileComponent,
     // GenericComponent
   ],
   imports: [
