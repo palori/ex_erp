@@ -1,15 +1,15 @@
-<div>
+<div class="container">
     <div class="col">
       <h1 id="tableLabel">Clients</h1>
       <p>List of clients of the company.</p>
       <p *ngIf="!clients"><em>Loading...</em></p>
     </div>
-    <!--div class="col" *ngIf="clients">
-      <app-employee-search></app-employee-search>
-      <a routerLink="/employee/add">
-        <button class="add-new">Add a new client</button>
+    <div class="col" *ngIf="clients">
+      <!--app-employee-search></app-employee-search-->
+      <a routerLink="/client/new">
+        <button class="add-new">New</button>
       </a>
-    </div-->
+    </div>
   </div>
   
   <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="clients">

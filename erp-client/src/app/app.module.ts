@@ -5,7 +5,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+// External libraries
 import { AngularEmojisModule } from 'angular-emojis';
+import { ChartsModule } from 'ng2-charts';
 
 // Utils
 import { NavBarComponent } from './utils/nav-bar/nav-bar.component';
@@ -23,6 +26,8 @@ import { ClientsListComponent } from './views/clients/clients-list/clients-list.
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { ClientDetailComponent } from './views/clients/client-detail/client-detail.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { ClientNewComponent } from './views/clients/client-new/client-new.component';
+import { NewClientsMonthComponent } from './views/statistics/new-clients-month/new-clients-month.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +43,8 @@ import { ProfileComponent } from './views/profile/profile.component';
     LoginComponent,
     ClientDetailComponent,
     ProfileComponent,
+    ClientNewComponent,
+    NewClientsMonthComponent,
     // GenericComponent
   ],
   imports: [
@@ -46,7 +53,8 @@ import { ProfileComponent } from './views/profile/profile.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    AngularEmojisModule
+    AngularEmojisModule,
+    ChartsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

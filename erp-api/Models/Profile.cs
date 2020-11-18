@@ -21,13 +21,18 @@ namespace erp_api.Models
         [JsonIgnore]
         public virtual Contact Contact {get; set;}
 
-        public void Update<T>(T entity, string id, Contact contact) where T: class, IProfile
+        public void Update<T>(T entity) where T: class, IProfile
         {
-            if (id != null) this.Id = id;
-            if (contact != null) this.Contact = contact;
             if (entity.Surnames != null) this.Surnames = entity.Surnames;
             if (entity.Gender != null) this.Gender = entity.Gender;
             if (entity.Year != null) this.Year = entity.Year;
+        }
+        
+        public void Add<T>(T entity, string id, Contact contact) where T: class, IProfile
+        {
+            if (id != null) this.Id = id;
+            if (contact != null) this.Contact = contact;
+            Update<T>(entity);
         }
     }
 }

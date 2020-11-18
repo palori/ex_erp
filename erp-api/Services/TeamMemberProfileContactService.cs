@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 using erp_api.Models;
 using erp_api.Repositories;
 using erp_api.Data.DTO;
+using erp_api.Helpers;
 
 namespace erp_api.Services
 {
@@ -108,15 +110,16 @@ namespace erp_api.Services
         public async Task<bool> Update(TeamMemberDto tm0)
         {
             TeamMember tm = await this.teamMembers.Get(tm0.Id);
-            tm.Update<TeamMemberDto>(tm0, null, null);
+            tm.Update<TeamMemberDto>(tm0);
 
             // Find tm profile
             Profile profile = await this.profiles.Get(tm.ProfileId);
-            profile.Update<TeamMemberDto>(tm0, null, null);
+            profile.Update<TeamMemberDto>(tm0);
 
             // Find profile contact
             Contact contact = await this.contacts.Get(profile.ContactId);
-            contact.Update<TeamMemberDto>(tm0, null);
+            contact.Update<TeamMemberDto>(tm0);
+            contact.LastUpdated = DateTime.Now;
 
             // Update DB
             bool tm_updated = false, profile_updated = false, contact_updated = false;
@@ -136,25 +139,29 @@ namespace erp_api.Services
         public async Task<TeamMemberDto> Add(TeamMemberDto tm0)
         {
             // Some code to generate the Id's
-            string cliId = "TM3"; // generated somewhere
+            var g = new GenerateId(".","TM");
+            string newId = g.Generate();
             //string addId = "A-"+cliId;
-            string profId = cliId;
-            string contId = cliId;
-            tm0.Id = cliId; // assign tm Id, no matter what they send
+            string profId = newId;
+            string contId = newId;
+            tm0.Id = newId; // assign tm Id, no matter what they send
 
             // Contact
             Contact contact = new Contact();
-            contact.Update<TeamMemberDto>(tm0, contId);
+            contact.Add<TeamMemberDto>(tm0, contId);
+            var just_now = DateTime.Now;
+            contact.Registered = just_now;
+            contact.LastUpdated = just_now;
             Contact cont = await this.contacts.Add(contact);
 
             // Profile
             Profile profile = new Profile();
-            profile.Update<TeamMemberDto>(tm0, profId, contact);
+            profile.Add<TeamMemberDto>(tm0, profId, contact);
             Profile prof = await this.profiles.Add(profile);
 
             // Client
             TeamMember tm = new TeamMember();
-            tm.Update<TeamMemberDto>(tm0, profile, null);
+            tm.Add<TeamMemberDto>(tm0, profile, null);
             TeamMember cli = await this.teamMembers.Add(tm);
 
             return new TeamMemberDto(cont, prof, cli);

@@ -24,12 +24,17 @@ namespace erp_api.Models
         public virtual Address Address {get; set;} // Simplify to just one address :)
         // public virtual List<Address> Addresses {get; set;}
 
-        public void Update<T>(T entity, Contact contact, Address address) where T: SupplierDto
+        public void Update<T>(T entity) where T: SupplierDto
+        {
+            if (entity.Cif != null) this.Cif = entity.Cif;
+        }
+        
+        public void Add<T>(T entity, Contact contact, Address address) where T: SupplierDto
         {
             if (entity.Id != null) this.Id = entity.Id;
-            if (entity.Cif != null) this.Cif = entity.Cif;
             if (contact != null) this.Contact = contact;
             if (address != null) this.Address = address;
+            Update<T>(entity);
         }
     }
 }

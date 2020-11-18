@@ -24,12 +24,17 @@ namespace erp_api.Models
         [JsonIgnore]
         public virtual Address Address {get; set;}
 
-        public void Update<T>(T entity, Profile profile, Address address) where T: ClientDto
+        public void Update<T>(T entity) where T: ClientDto
+        {
+            if (entity.SendNotifications != null) this.SendNotifications = entity.SendNotifications;
+        }
+        
+        public void Add<T>(T entity, Profile profile, Address address) where T: ClientDto
         {
             if (entity.Id != null) this.Id = entity.Id;
-            if (entity.SendNotifications != null) this.SendNotifications = entity.SendNotifications;
             if (profile != null) this.Profile = profile;
             if (address != null) this.Address = address;
+            Update<T>(entity);
         }
     }
 }

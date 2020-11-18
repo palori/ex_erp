@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 using erp_api.Models;
 using erp_api.Repositories;
 using erp_api.Data.DTO;
+using erp_api.Helpers;
 
 namespace erp_api.Services
 {
@@ -82,11 +84,12 @@ namespace erp_api.Services
         public async Task<bool> Update(SupplierDto supplier0)
         {
             Supplier supplier = await this.suppliers.Get(supplier0.Id);
-            supplier.Update<SupplierDto>(supplier0, null, null);
+            supplier.Update<SupplierDto>(supplier0);
 
             // Find supplier contact
             Contact contact = await this.contacts.Get(supplier.ContactId);
-            contact.Update<SupplierDto>(supplier0, null);
+            contact.Update<SupplierDto>(supplier0);
+            contact.LastUpdated = DateTime.Now;
 
             // Update DB
             bool supplier_updated = false, contact_updated = false;
@@ -103,20 +106,24 @@ namespace erp_api.Services
         public async Task<SupplierDto> Add(SupplierDto supplier0)
         {
             // Some code to generate the Id's
-            string cliId = "S3"; // generated somewhere
+            var g = new GenerateId(".","S");
+            string newId = g.Generate();
             //string addId = "A-"+cliId;
-            string profId = cliId;
-            string contId = cliId;
-            supplier0.Id = cliId; // assign supplier Id, no matter what they send
+            string profId = newId;
+            string contId = newId;
+            supplier0.Id = newId; // assign supplier Id, no matter what they send
 
             // Contact
             Contact contact = new Contact();
-            contact.Update<SupplierDto>(supplier0, contId);
+            contact.Add<SupplierDto>(supplier0, contId);
+            var just_now = DateTime.Now;
+            contact.Registered = just_now;
+            contact.LastUpdated = just_now;
             Contact cont = await this.contacts.Add(contact);
 
             // Client
             Supplier supplier = new Supplier();
-            supplier.Update<SupplierDto>(supplier0, contact, null);
+            supplier.Add<SupplierDto>(supplier0, contact, null);
             Supplier cli = await this.suppliers.Add(supplier);
 
             return new SupplierDto(cont, cli);

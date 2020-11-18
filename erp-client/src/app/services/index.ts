@@ -7,6 +7,7 @@ export * from './iteminfo.service';
 export * from './order.service';
 export * from './orderitem.service';
 export * from './profile.service';
+export * from './statistics.service';
 export * from './supplier.service';
 export * from './teammember.service';
 export * from './tradinginfo.service';

@@ -45,6 +45,7 @@ export class NavBarComponent implements OnInit {
     // }
 
     // option2
+    // https://stackoverflow.com/questions/6061760/document-getelementbyid-regex
     var menu1 = document.querySelectorAll('[id^=option]');
     console.log(menu1);
     for (var i=0; i<menu1.length; i++){

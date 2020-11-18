@@ -73,18 +73,17 @@ export class GenericService<T> implements IGenericService<T>{
 
   update(item: T): Observable<T>
   {
-      const url = `${this.url}/1`; //`${this.url}/${id}`;
     //   this.set_id(-1);
-      return this.http.put<T>(url, item, this.httpOptions).pipe(
+      return this.http.put<T>(this.url, item, this.httpOptions).pipe(
           //tap(_ => this.log(`updated hero id=${hero.id}`)),
           catchError(this.handleError<T>(`update ${typeof item}`))
       );
   }
 
   delete(item: T): Observable<T>{
-      //const url = `${this.url}/${id}`;
+      const url = `${this.url}/d`;
     //   this.set_id(item.id);
-      return this.http.delete<T>(this.url, this.httpOptions).pipe(
+      return this.http.post<T>(url, item, this.httpOptions).pipe(
           //tap(_ => this.log(`deleted hero id=${id}`)),
           catchError(this.handleError<T>(`delete ${typeof item}`)) // to imporve and add to others!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       );

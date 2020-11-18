@@ -19,14 +19,19 @@ namespace erp_api.Models
         [JsonIgnore]
         public string Password {get; set;}
 
-        public void Update<T>(T entity, string id) where T: class, IContact
+        public void Update<T>(T entity) where T: class, IContact
         {
-            if (entity.Id != null) this.Id = id;
             if (entity.Name != null) this.Name = entity.Name;
             if (entity.PhoneNumber != null) this.PhoneNumber = entity.PhoneNumber;
             if (entity.Email != null) this.Email = entity.Email;
             if (entity.Registered != null) this.Registered = entity.Registered;
             if (entity.LastUpdated != null) this.LastUpdated = entity.LastUpdated;
+        }
+        
+        public void Add<T>(T entity, string id) where T: class, IContact
+        {
+            if (entity.Id != null) this.Id = id;
+            Update<T>(entity);
         }
     }
 }

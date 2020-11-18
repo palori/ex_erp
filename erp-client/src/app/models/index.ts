@@ -8,6 +8,7 @@ export * from './iteminfo';
 export * from './order';
 export * from './orderitem';
 export * from './profile';
+export * from './statistics';
 export * from './supplier';
 export * from './teammember';
 export * from './tradinginfo';

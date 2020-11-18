@@ -23,6 +23,12 @@ dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
 dotnet restore
 ```
 
+## Angular
+### Install Bootstrap
+...
+
+### Install Charts.js
+https://medium.com/codingthesmartway-com-blog/angular-chart-js-with-ng2-charts-e21c8262777f
 
 ## Other info
 
