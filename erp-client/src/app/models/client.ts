@@ -1,7 +1,6 @@
-export class Client {
-    ID: string;
-    Name: string;
-    Surname: string;
-    PhoneNumber: string;
-    Salary: number;
+import { Profile } from '.';
+
+export class Client extends Profile {
+    sendNotifications: boolean;
+    addressId: any;
 }

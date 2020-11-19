@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Client } from '../../../models/client';
-import { ClientService } from '../../../client.service';
+import { Client } from '../../../models';
+import { ClientService } from '../../../services';
 
 @Component({
   selector: 'app-clients-list',
@@ -18,13 +18,13 @@ export class ClientsListComponent implements OnInit {
   }
 
   getClients(): void {
-    this.clientService.getEmployees()
-    .subscribe(employees => this.clients = employees);
+    this.clientService.getAll()
+    .subscribe(clients => this.clients = clients);
   }
 
-  deleteEmployee(client: Client){
+  delete(client: Client){
     this.clients = this.clients.filter(h => h !== client);
-    this.clientService.deleteEmployee(client).subscribe();
+    this.clientService.delete(client).subscribe();
   }
   
 }

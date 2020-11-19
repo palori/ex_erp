@@ -1,0 +1,87 @@
+<div class="container">
+
+    <h2>Add a new team member</h2>
+
+    <p>Fill in the information of the new team member.</p>
+    <p>The ID will be assigned automatically.</p>
+  
+    <table class='table table-striped' aria-labelledby="tableLabel">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Information</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Name</td>
+          <td>
+            <input #name/>
+            <!--label id="empty-name" class="error-field">*</label-->
+          </td>
+        </tr>
+        <tr>
+          <td>Surames</td>
+          <td>
+            <input #surnames/>
+            <!--label id="empty-surname" class="error-field">*</label-->
+          </td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td>
+            <input #phone/>
+          </td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>
+            <input #email/>
+            <!--label id="empty-salary" class="error-field">*</label>
+            <label id="error-salary" class="error-field">Number</label-->
+          </td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>
+              <input #gender/>
+            </td>
+          </tr>
+          <tr>
+            <td>Year</td>
+            <td>
+              <input #year/>
+            </td>
+          </tr>
+        <tr>
+          <td>Role</td>
+          <td>
+            <input #role/>
+          </td>
+        </tr>
+        <tr>
+          <td>Is admin?</td>
+          <td>
+            <input #isAdmin/>
+          </td>
+        </tr>
+        <tr>
+          <td>Nif</td>
+          <td>
+            <input #nif/>
+          </td>
+        </tr>
+        <tr>
+          <td>Salary</td>
+          <td>
+            <input #salary/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div>
+      <span><button class="add-new" (click)="add(name.value, surnames.value, phone.value, email.value, gender.value, year.value, role.value, isAdmin.value, nif.value, salary.value)">Create</button></span>
+    </div>
+    
+  </div>

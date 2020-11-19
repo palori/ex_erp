@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 using erp_api.Models;
 using erp_api.Repositories;
 using erp_api.Data.DTO;
+using erp_api.Helpers;
 
 namespace erp_api.Services
 {
@@ -77,6 +79,70 @@ namespace erp_api.Services
             }
             
             return suppliersDto;
+        }
+
+        public async Task<bool> Update(SupplierDto supplier0)
+        {
+            Supplier supplier = await this.suppliers.Get(supplier0.Id);
+            supplier.Update<SupplierDto>(supplier0);
+
+            // Find supplier contact
+            Contact contact = await this.contacts.Get(supplier.ContactId);
+            contact.Update<SupplierDto>(supplier0);
+            contact.LastUpdated = DateTime.Now;
+
+            // Update DB
+            bool supplier_updated = false, contact_updated = false;
+
+            supplier_updated = await this.suppliers.Update(supplier);
+            if (supplier_updated)
+            {
+                contact_updated = await this.contacts.Update(contact);
+            }
+            
+            return supplier_updated && contact_updated;
+        }
+
+        public async Task<SupplierDto> Add(SupplierDto supplier0)
+        {
+            // Some code to generate the Id's
+            var g = new GenerateId(".","S");
+            string newId = g.Generate();
+            //string addId = "A-"+cliId;
+            string profId = newId;
+            string contId = newId;
+            supplier0.Id = newId; // assign supplier Id, no matter what they send
+
+            // Contact
+            Contact contact = new Contact();
+            contact.Add<SupplierDto>(supplier0, contId);
+            var just_now = DateTime.Now;
+            contact.Registered = just_now;
+            contact.LastUpdated = just_now;
+            Contact cont = await this.contacts.Add(contact);
+
+            // Client
+            Supplier supplier = new Supplier();
+            supplier.Add<SupplierDto>(supplier0, contact, null);
+            Supplier cli = await this.suppliers.Add(supplier);
+
+            return new SupplierDto(cont, cli);
+        }
+
+        public async Task<SupplierDto> Delete(SupplierDto supplier0)
+        {
+            Supplier supplier = await this.suppliers.Get(supplier0.Id);
+            Contact contact = await this.contacts.Get(supplier.ContactId);
+            
+            Supplier del_supplier = await this.suppliers.Delete(supplier);
+            if (del_supplier != null)
+            {
+                Contact del_contact = await this.contacts.Delete(contact);
+                // maybe check if contact has been deleted properly
+            }
+
+            // further considerations: compliance if some of them can be deleted bu not all...
+            return new SupplierDto(contact, supplier);
         }
 
     }

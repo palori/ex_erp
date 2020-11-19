@@ -18,6 +18,7 @@ namespace erp_api.Controllers
 
         private readonly ClientProfileContactService _clientProfileContactService; // Service
 
+        [Authorize]
         [HttpPost("1")] //[HttpGet("1")]
         public async Task<ActionResult<ClientDto>> Get(ClientDto client)
         {
@@ -30,10 +31,38 @@ namespace erp_api.Controllers
             return Ok(clientDto);
         }
         
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ClientDto>>> GetAll()
         {
             return await _clientProfileContactService.GetAll();
+        }
+
+        [Authorize]
+        [HttpPut()]
+        public async Task<IActionResult> Update(ClientDto client)
+        {
+            bool updated = await _clientProfileContactService.Update(client);
+            if (!updated) return NotFound();
+            return NoContent();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public async Task<ActionResult<ClientDto>> Add(ClientDto client)
+        {
+            var entity = await _clientProfileContactService.Add(client);
+            if (entity == null) return BadRequest();
+            return Ok(entity);
+        }
+
+        [Authorize]
+        [HttpPost("d")] //[HttpDelete]
+        public async Task<ActionResult<ClientDto>> Delete(ClientDto client)
+        {
+            var entity = await _clientProfileContactService.Delete(client);
+            if (entity == null) return NotFound();
+            return Ok(entity);
         }
     }
 }

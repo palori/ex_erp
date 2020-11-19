@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 using erp_api.Models;
 using erp_api.Repositories;
 using erp_api.Data.DTO;
+using erp_api.Helpers;
 
 namespace erp_api.Services
 {
@@ -127,5 +129,89 @@ namespace erp_api.Services
             
         //     return clientsDto;
         // }
+
+
+        public async Task<bool> Update(ClientDto client0)
+        {
+            Client client = await this.clients.Get(client0.Id);
+            client.Update<ClientDto>(client0);
+
+            // Find client profile
+            Profile profile = await this.profiles.Get(client.ProfileId);
+            profile.Update<ClientDto>(client0);
+
+            // Find profile contact
+            Contact contact = await this.contacts.Get(profile.ContactId);
+            contact.Update<ClientDto>(client0);
+            contact.LastUpdated = DateTime.Now;
+
+            // Update DB
+            bool client_updated = false, profile_updated = false, contact_updated = false;
+            client_updated = await this.clients.Update(client);
+            if (client_updated)
+            {
+                profile_updated = await this.profiles.Update(profile);
+                if (profile_updated)
+                {
+                    contact_updated = await this.contacts.Update(contact);
+                }
+            }
+            
+            return client_updated && profile_updated && contact_updated;
+        }
+
+        public async Task<ClientDto> Add(ClientDto client0)
+        {
+            // Some code to generate the Id's
+            var g = new GenerateId(".","C");
+            string newId = g.Generate();
+            //string addId = "A-"+cliId;
+            string profId = newId;
+            string contId = newId;
+            client0.Id = newId; // assign client Id, no matter what they send
+
+            // Contact
+            Contact contact = new Contact();
+            contact.Add<ClientDto>(client0, contId);
+            var just_now = DateTime.Now;
+            contact.Registered = just_now;
+            contact.LastUpdated = just_now;
+            Contact cont = await this.contacts.Add(contact);
+
+            // Profile
+            Profile profile = new Profile();
+            profile.Add<ClientDto>(client0, profId, contact);
+            Profile prof = await this.profiles.Add(profile);
+
+            // Client
+            Client client = new Client();
+            client.Add<ClientDto>(client0, profile, null);
+            Client cli = await this.clients.Add(client);
+
+            return new ClientDto(cont, prof, cli);
+        }
+
+        public async Task<ClientDto> Delete(ClientDto client0)
+        {
+            Client client = await this.clients.Get(client0.Id);
+            Profile profile = await this.profiles.Get(client.ProfileId);
+            Contact contact = await this.contacts.Get(profile.ContactId);
+            
+            Client del_client = await this.clients.Delete(client);
+            if (del_client != null)
+            {
+                Profile del_profile = await this.profiles.Delete(profile);
+
+                if (del_profile != null)
+                {
+                    Contact del_contact = await this.contacts.Delete(contact);
+                    // maybe check if contact has been deleted properly
+                }
+            }
+
+            // further considerations: compliance if some of them can be deleted bu not all...
+            return new ClientDto(contact, profile, client);
+        }
+
     }
 }

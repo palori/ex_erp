@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="col">
+      <h1 id="tableLabel">Suppliers</h1>
+      <p>List of suppliers of the company.</p>
+      <p *ngIf="!suppliers"><em>Loading...</em></p>
+    </div>
+    <div class="col" *ngIf="suppliers">
+      <!--app-employee-search></app-employee-search-->
+      <a routerLink="/supplier/new">
+        <button class="add-new">New</button>
+      </a>
+    </div>
+  </div>
+  
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="suppliers">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Cif</th>
+        <!--th>Registered</th>
+        <th>Updated</th>
+        <th>Address</th-->
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let supplier of suppliers">
+        <td>{{ supplier.id }}</td>
+        <td>{{ supplier.name }}</td>
+        <td>{{ supplier.phoneNumber }}</td>
+        <td>{{ supplier.email }}</td>
+        <td>{{ supplier.cif }}</td>
+        <!--td>{{ supplier.registered }}</td>
+        <td>{{ supplier.lastUpdated }}</td>
+        <td>{{ supplier.addressId }}</td-->
+        <td>
+          <span>
+            <a routerLink="/supplier/{{supplier.id}}">
+              <button class="details">Details</button>
+            </a>
+          </span>
+          <span>
+            <button class="delete" (click)="delete(supplier)">Delete</button>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>

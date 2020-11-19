@@ -1,0 +1,25 @@
+<div class="chart-max-width" *ngIf="chart.title">
+    <p>{{chart.title}}</p>
+    <div style="display: block">
+        <canvas baseChart
+            [datasets]="chart.barChartData"
+            [labels]="chart.barChartLabels"
+            [options]="chart.barChartOptions"
+            [legend]="chart.barChartLegend"
+            [chartType]="chart.barChartType">
+        </canvas>
+    </div>
+</div>
+
+<div class="chart-max-width" *ngIf="chart2.title">
+    <p>{{chart2.title}}</p>
+    <div style="display: block">
+        <canvas baseChart
+            [datasets]="chart2.barChartData"
+            [labels]="chart2.barChartLabels"
+            [options]="chart2.barChartOptions"
+            [legend]="chart2.barChartLegend"
+            [chartType]="chart2.barChartType">
+        </canvas>
+    </div>
+</div>

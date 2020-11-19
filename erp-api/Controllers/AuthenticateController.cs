@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System;
+// using Newtonsoft.Json;
 
 using erp_api.Models;
 using erp_api.Services;
@@ -23,7 +24,7 @@ namespace erp_api.Controllers
         public async Task<IActionResult> Authenticate(AuthenticateRequest model)
         {
             var response = await _authService.Authenticate(model);
-
+            // Console.WriteLine(JsonConvert.SerializeObject(model));
             if (response == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
             

@@ -69,16 +69,19 @@ namespace erp_api.Services
             List<ClientDto> clients = await this.clients.GetAll();
             foreach (var client in clients)
             {
-                var yearC = client.Registered.Year;
-                var monthC = client.Registered.Month;
-                var x = new DateTime(year,month,1);
-                
-                for (int i=0; i<numMonths; i++)
-                {
-                    if (x == data.X[i])
+                var reg = client.Registered;
+                if (reg!=null){
+                    var yearC = reg.Value.Year;
+                    var monthC = reg.Value.Month;
+                    var x = new DateTime(year,month,1);
+                    
+                    for (int i=0; i<numMonths; i++)
                     {
-                        data.Y[i]++;
-                        break;
+                        if (x == data.X[i])
+                        {
+                            data.Y[i]++;
+                            break;
+                        }
                     }
                 }
             }

@@ -36,3 +36,8 @@
 .vobu-font{
     font-family: TTFirsNeue;
 }
+
+.container{
+	margin-top: 2em;
+	margin-bottom: 1em;
+}

@@ -1,15 +1,15 @@
-<div>
+<div class="container">
     <div class="col">
       <h1 id="tableLabel">Clients</h1>
       <p>List of clients of the company.</p>
       <p *ngIf="!clients"><em>Loading...</em></p>
     </div>
-    <!--div class="col" *ngIf="clients">
-      <app-employee-search></app-employee-search>
-      <a routerLink="/employee/add">
-        <button class="add-new">Add a new client</button>
+    <div class="col" *ngIf="clients">
+      <!--app-employee-search></app-employee-search-->
+      <a routerLink="/client/new">
+        <button class="add-new">New</button>
       </a>
-    </div-->
+    </div>
   </div>
   
   <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="clients">
@@ -17,9 +17,15 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Surname</th>
-        <th>PhoneNumber</th>
-        <th>Salary</th>
+        <th>Surnames</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <!--th>Registered</th>
+        <th>Updated</th>
+        <th>Gender</th>
+        <th>Year</th>
+        <th>Notify</th>
+        <th>Address</th-->
         <th>Actions</th>
       </tr>
     </thead>
@@ -27,9 +33,15 @@
       <tr *ngFor="let client of clients">
         <td>{{ client.id }}</td>
         <td>{{ client.name }}</td>
-        <td>{{ client.surname }}</td>
-        <td>{{ client.job }}</td>
-        <td>{{ client.salary }}</td>
+        <td>{{ client.surnames }}</td>
+        <td>{{ client.phoneNumber }}</td>
+        <td>{{ client.email }}</td>
+        <!--td>{{ client.registered }}</td>
+        <td>{{ client.lastUpdated }}</td>
+        <td>{{ client.gender }}</td>
+        <td>{{ client.year }}</td>
+        <td>{{ client.sendNotifications }}</td>
+        <td>{{ client.addressId }}</td-->
         <td>
           <span>
             <a routerLink="/client/{{client.id}}">
@@ -37,7 +49,7 @@
             </a>
           </span>
           <span>
-            <button class="delete" (click)="deleteClient(client)">Delete</button>
+            <button class="delete" (click)="delete(client)">Delete</button>
           </span>
         </td>
       </tr>

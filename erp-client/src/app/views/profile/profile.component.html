@@ -1,0 +1,10 @@
+<div class="container" *ngIf="currentUser">
+    <h2>Welcome {{currentUser.name}}</h2>
+    <label>ID: {{currentUser.id}}</label><br>
+    <label>Name: {{currentUser.name}}</label><br>
+    <label>Phone: {{currentUser.phoneNumber}}</label><br>
+    <label>Email: {{currentUser.email}}</label><br>
+    <label>Registered: {{currentUser.registered}}</label><br>
+    <label>Last updated: {{currentUser.lastUpdated}}</label><br>
+    <label style="font-size: x-small;">{{currentUser.token}}</label>
+</div>

@@ -2,12 +2,16 @@ using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
+using erp_api.Data.DTO;
+
 namespace erp_api.Models
 {
     public class Client: IEntity<string>
     {
-        public string Id {get; set;}
-        public bool SendNotifications {get; set;}
+        #nullable enable
+        public string? Id {get; set;}
+        public bool? SendNotifications {get; set;}
+        #nullable disable
 
         //ForeignKeys
         [ForeignKey("Profile")]
@@ -19,5 +23,18 @@ namespace erp_api.Models
         public string AddressId {get; set;}
         [JsonIgnore]
         public virtual Address Address {get; set;}
+
+        public void Update<T>(T entity) where T: ClientDto
+        {
+            if (entity.SendNotifications != null) this.SendNotifications = entity.SendNotifications;
+        }
+        
+        public void Add<T>(T entity, Profile profile, Address address) where T: ClientDto
+        {
+            if (entity.Id != null) this.Id = entity.Id;
+            if (profile != null) this.Profile = profile;
+            if (address != null) this.Address = address;
+            Update<T>(entity);
+        }
     }
 }

@@ -9,8 +9,8 @@ namespace erp_api.Data.DTO
         public string Name { get; set; }
         public string PhoneNumber {get; set;}
         public string Email {get; set;}
-        public DateTime Registered {get; set;}
-        public DateTime LastUpdated {get; set;}
+        public DateTime? Registered {get; set;}
+        public DateTime? LastUpdated {get; set;}
         public string Token { get; set; }
 
 

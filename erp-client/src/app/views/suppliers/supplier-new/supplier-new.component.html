@@ -1,0 +1,50 @@
+<div class="container">
+
+    <h2>Add a new supplier</h2>
+
+    <p>Fill in the information of the new supplier.</p>
+    <p>The ID will be assigned automatically.</p>
+  
+    <table class='table table-striped' aria-labelledby="tableLabel">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Information</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Name</td>
+          <td>
+            <input #name/>
+            <!--label id="empty-name" class="error-field">*</label-->
+          </td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td>
+            <input #phone/>
+          </td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td>
+            <input #email/>
+            <!--label id="empty-salary" class="error-field">*</label>
+            <label id="error-salary" class="error-field">Number</label-->
+          </td>
+        </tr>
+        <tr>
+          <td>Cif</td>
+          <td>
+            <input #cif/>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div>
+      <span><button class="add-new" (click)="add(name.value, phone.value, email.value, cif.value)">Create</button></span>
+    </div>
+    
+  </div>

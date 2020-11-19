@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="col">
+      <h1 id="tableLabel">Clients</h1>
+      <p>List of team of the company.</p>
+      <p *ngIf="!team"><em>Loading...</em></p>
+    </div>
+    <div class="col" *ngIf="team">
+      <!--app-employee-search></app-employee-search-->
+      <a routerLink="/team/new">
+        <button class="add-new">New</button>
+      </a>
+    </div>
+  </div>
+  
+  <table class='table table-striped' aria-labelledby="tableLabel" *ngIf="team">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surnames</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <!--th>Registered</th>
+        <th>Updated</th>
+        <th>Gender</th>
+        <th>Year</th>
+        <th>Role</th>
+        <th>IsAdmin</th>
+        <th>Nif</th>
+        <th>Salary</th>
+        <th>Address</th-->
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tm of team">
+        <td>{{ tm.id }}</td>
+        <td>{{ tm.name }}</td>
+        <td>{{ tm.surnames }}</td>
+        <td>{{ tm.phoneNumber }}</td>
+        <td>{{ tm.email }}</td>
+        <!--td>{{ tm.registered }}</td>
+        <td>{{ tm.lastUpdated }}</td>
+        <td>{{ tm.gender }}</td>
+        <td>{{ tm.year }}</td>
+        <td>{{ tm.role }}</td>
+        <td>{{ tm.isAdmin }}</td>
+        <td>{{ tm.nif }}</td>
+        <td>{{ tm.salary }}</td>
+        <td>{{ tm.addressId }}</td-->
+        <td>
+          <span>
+            <a routerLink="/team/{{tm.id}}">
+              <button class="details">Details</button>
+            </a>
+          </span>
+          <span>
+            <button class="delete" (click)="delete(tm)">Delete</button>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
