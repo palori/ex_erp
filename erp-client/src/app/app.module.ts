@@ -29,6 +29,12 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { ClientNewComponent } from './views/clients/client-new/client-new.component';
 import { NewClientsMonthComponent } from './views/statistics/new-clients-month/new-clients-month.component';
 import { OrdersDayAvgCartComponent } from './views/statistics/orders-day-avg-cart/orders-day-avg-cart.component';
+import { SuppliersListComponent } from './views/suppliers/suppliers-list/suppliers-list.component';
+import { SupplierDetailComponent } from './views/suppliers/supplier-detail/supplier-detail.component';
+import { SupplierNewComponent } from './views/suppliers/supplier-new/supplier-new.component';
+import { TeamListComponent } from './views/team/team-list/team-list.component';
+import { TeamNewComponent } from './views/team/team-new/team-new.component';
+import { TeamDetailComponent } from './views/team/team-detail/team-detail.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +53,12 @@ import { OrdersDayAvgCartComponent } from './views/statistics/orders-day-avg-car
     ClientNewComponent,
     NewClientsMonthComponent,
     OrdersDayAvgCartComponent,
+    SuppliersListComponent,
+    SupplierDetailComponent,
+    SupplierNewComponent,
+    TeamListComponent,
+    TeamNewComponent,
+    TeamDetailComponent,
     // GenericComponent
   ],
   imports: [

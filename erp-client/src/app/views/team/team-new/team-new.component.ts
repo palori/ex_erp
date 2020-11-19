@@ -1,27 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Location } from '@angular/common';
 
-import { Client } from "../../../models";
-import { ClientService } from '../../../services';
+import { TeamMember } from "../../../models";
+import { TeamMemberService } from '../../../services';
 import { rawListeners } from 'process';
 // import { INITIAL_CONFIG } from '@angular/platform-server';
 
 @Component({
-  selector: 'app-client-new',
-  templateUrl: './client-new.component.html',
-  styleUrls: ['./client-new.component.css']
+  selector: 'app-team-new',
+  templateUrl: './team-new.component.html',
+  styleUrls: ['./team-new.component.css']
 })
-export class ClientNewComponent implements OnInit {
+export class TeamNewComponent implements OnInit {
 
   constructor(
-    private clientService: ClientService,
+    private teamService: TeamMemberService,
     private location: Location
   ) {}
 
   ngOnInit(): void { }
 
-  add(name: string, surnames: string, phone: string, email: string, gender: string, year: string, notify: string){
+  add(name: string, surnames: string, phone: string, email: string, gender: string, year: string, role: string, isAdmin: string, nif: string, salary:string){
     // verify inputs
     name = name.trim();
     surnames = surnames.trim();
@@ -29,11 +28,14 @@ export class ClientNewComponent implements OnInit {
     email = email.trim();
     gender = gender.trim(); var gen = false;
     year = year.trim(); var yy = 1800;
-    notify = notify.trim(); var noti = false;
+    role = role.trim();
+    isAdmin = isAdmin.trim(); var ia = false;
+    nif = nif.trim();
+    salary = salary.trim(); var sal = 1;
 
     // if(!name && !surnames && !phone && !email && !gender && !year && !notify){
     if(true){
-      this.clientService.add(this.initEntity(name, surnames, phone, email, gen, yy, noti) as Client)
+      this.teamService.add(this.initEntity(name, surnames, phone, email, gen, yy, role, ia, nif, sal) as TeamMember)
       //.subscribe(employee => this.employee = employee);
       .subscribe(() => this.goBack());
       //.subscribe();
@@ -44,7 +46,7 @@ export class ClientNewComponent implements OnInit {
     this.location.back();
   }
 
-  initEntity(n:string, s: string, p:string, e:string, g:boolean, y:number, sn:boolean){
+  initEntity(n:string, s: string, p:string, e:string, g:boolean, y:number, r:string, ia:boolean, nif:string, ss:number){
     return {
       name: n,
       surnames: s,
@@ -52,7 +54,10 @@ export class ClientNewComponent implements OnInit {
       email: e,
       gender: g,
       year: y,
-      sendNotifications: sn
+      role: r,
+      isAdmin: ia,
+      nif: nif,
+      salary: ss
     };
   }
 

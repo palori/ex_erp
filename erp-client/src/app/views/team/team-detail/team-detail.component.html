@@ -1,0 +1,119 @@
+<div *ngIf="tm" class="container">
+
+    <h2>{{tm.id}} - {{tm.name | uppercase}}</h2>
+
+    <div *ngIf="tm">
+      <table class='table table-striped' aria-labelledby="tableLabel">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Information</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ID</td>
+            <td>{{tm.id}}</td>
+          </tr>
+          <tr>
+            <td>Name</td>
+            <td><input [(ngModel)]="tm.name" placeholder="name"/></td>
+          </tr>
+          <tr>
+            <td>Surames</td>
+            <td><input [(ngModel)]="tm.surnames" placeholder="surname"/></td>
+          </tr>
+          <tr>
+            <td>Phone</td>
+            <td><input [(ngModel)]="tm.phoneNumber" placeholder="phone number"/></td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td><input [(ngModel)]="tm.email" placeholder="email"/></td>
+          </tr>
+          <tr>
+            <td>Registered</td>
+            <td><input [(ngModel)]="tm.registered" placeholder="registered"/></td>
+          </tr>
+          <tr>
+            <td>Updated</td>
+            <td><input [(ngModel)]="tm.lastUpdated" placeholder="lastUpdated"/></td>
+          </tr>
+          <tr>
+            <td>Gender</td>
+            <td><input [(ngModel)]="tm.gender" placeholder="gender"/></td>
+          </tr>
+          <tr>
+            <td>Year</td>
+            <td><input [(ngModel)]="tm.year" placeholder="year"/></td>
+          </tr>
+          <tr>
+            <td>Role</td>
+            <td><input [(ngModel)]="tm.role" placeholder="role"/></td>
+          </tr>
+          <tr>
+            <td>IsAdmin</td>
+            <td><input [(ngModel)]="tm.isAdmin" placeholder="is admin?"/></td>
+          </tr>
+          <tr>
+            <td>Nif</td>
+            <td><input [(ngModel)]="tm.nif" placeholder="nif"/></td>
+          </tr>
+          <tr>
+            <td>Salary</td>
+            <td><input [(ngModel)]="tm.salary" placeholder="salary"/></td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <span><button class="save" (click)="updateTeamMember()">Save</button></span>
+      </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div *ngIf="!address">
+      <span><button class="save" (click)="addAddress()">Add Address</button></span>
+    </div>
+    <div *ngIf="address">
+      <table class='table table-striped' aria-labelledby="tableLabel">
+        <thead>
+          <tr>
+            <th>Address</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Street</td>
+            <td><input [(ngModel)]="address.street" placeholder="street"/></td>
+          </tr>
+          <tr>
+            <td>Number</td>
+            <td><input [(ngModel)]="address.number" placeholder="number"/></td>
+          </tr>
+          <tr>
+            <td>Floor, door...</td>
+            <td><input [(ngModel)]="address.floor_door" placeholder="Floor, door, stairs..."/></td>
+          </tr>
+          <tr>
+            <td>City</td>
+            <td><input [(ngModel)]="address.city" placeholder="city"/></td>
+          </tr>
+          <tr>
+            <td>Postal Code</td>
+            <td><input [(ngModel)]="address.postalCode" placeholder="postal code"/></td>
+          </tr>
+          <tr>
+            <td>Country</td>
+            <td><input [(ngModel)]="address.country" placeholder="country"/></td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <span><button class="save" (click)="updateAddress()">Save</button></span>
+      </div>
+    </div>
+  </div>
+  

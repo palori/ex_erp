@@ -1,0 +1,95 @@
+<div *ngIf="supplier" class="container">
+
+    <h2>{{supplier.id}} - {{supplier.name | uppercase}}</h2>
+
+    <div *ngIf="supplier">
+      <table class='table table-striped' aria-labelledby="tableLabel">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Information</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ID</td>
+            <td>{{supplier.id}}</td>
+          </tr>
+          <tr>
+            <td>Name</td>
+            <td><input [(ngModel)]="supplier.name" placeholder="name"/></td>
+          </tr>
+          <tr>
+            <td>Phone</td>
+            <td><input [(ngModel)]="supplier.phoneNumber" placeholder="phone number"/></td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td><input [(ngModel)]="supplier.email" placeholder="email"/></td>
+          </tr>
+          <tr>
+            <td>Registered</td>
+            <td><input [(ngModel)]="supplier.registered" placeholder="registered"/></td>
+          </tr>
+          <tr>
+            <td>Updated</td>
+            <td><input [(ngModel)]="supplier.lastUpdated" placeholder="lastUpdated"/></td>
+          </tr>
+          <tr>
+            <td>Cif</td>
+            <td><input [(ngModel)]="supplier.cif" placeholder="cif"/></td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <span><button class="save" (click)="updateSupplier()">Save</button></span>
+      </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div *ngIf="!address">
+      <span><button class="save" (click)="addAddress()">Add Address</button></span>
+    </div>
+    <div *ngIf="address">
+      <table class='table table-striped' aria-labelledby="tableLabel">
+        <thead>
+          <tr>
+            <th>Address</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Street</td>
+            <td><input [(ngModel)]="address.street" placeholder="street"/></td>
+          </tr>
+          <tr>
+            <td>Number</td>
+            <td><input [(ngModel)]="address.number" placeholder="number"/></td>
+          </tr>
+          <tr>
+            <td>Floor, door...</td>
+            <td><input [(ngModel)]="address.floor_door" placeholder="Floor, door, stairs..."/></td>
+          </tr>
+          <tr>
+            <td>City</td>
+            <td><input [(ngModel)]="address.city" placeholder="city"/></td>
+          </tr>
+          <tr>
+            <td>Postal Code</td>
+            <td><input [(ngModel)]="address.postalCode" placeholder="postal code"/></td>
+          </tr>
+          <tr>
+            <td>Country</td>
+            <td><input [(ngModel)]="address.country" placeholder="country"/></td>
+          </tr>
+        </tbody>
+      </table>
+      <div>
+        <span><button class="save" (click)="updateAddress()">Save</button></span>
+      </div>
+    </div>
+  </div>
+  

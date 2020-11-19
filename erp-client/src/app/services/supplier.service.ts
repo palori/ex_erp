@@ -10,6 +10,6 @@ export class SupplierService extends GenericService<Supplier>{
 
   constructor(http: HttpClient) 
   {
-    super("suppliers", http);
+    super("supplierscontacts", http);
   }
 }

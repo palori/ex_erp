@@ -10,6 +10,6 @@ export class TeamMemberService extends GenericService<TeamMember>{
 
   constructor(http: HttpClient) 
   {
-    super("teammembers", http);
+    super("teammemberscontacts", http);
   }
 }
