@@ -1,4 +1,5 @@
 ﻿export * from './address';
+export * from './chart';
 export * from './client';
 export * from './component';
 export * from './contact';
@@ -12,6 +13,5 @@ export * from './statistics';
 export * from './supplier';
 export * from './teammember';
 export * from './tradinginfo';
-export * from './warehouseitem';
-
 export * from './user';
+export * from './warehouseitem';

@@ -28,6 +28,7 @@ import { ClientDetailComponent } from './views/clients/client-detail/client-deta
 import { ProfileComponent } from './views/profile/profile.component';
 import { ClientNewComponent } from './views/clients/client-new/client-new.component';
 import { NewClientsMonthComponent } from './views/statistics/new-clients-month/new-clients-month.component';
+import { OrdersDayAvgCartComponent } from './views/statistics/orders-day-avg-cart/orders-day-avg-cart.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { NewClientsMonthComponent } from './views/statistics/new-clients-month/n
     ProfileComponent,
     ClientNewComponent,
     NewClientsMonthComponent,
+    OrdersDayAvgCartComponent,
     // GenericComponent
   ],
   imports: [
