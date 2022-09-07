@@ -12,7 +12,7 @@ In essence, the project need the following NuGet packages:
 In the comand line:
 ```
 cd erp-api
-dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore --version 3.1.9
 dotnet add package MySql.Data.EntityFrameworkCore
 dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
 
